@@ -3,7 +3,6 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from langchain.embeddings import GooglePalmEmbeddings
 from transformers import pipeline
-from pymongo import MongoClient
 import faiss
 # from langchain.embeddings import GooglePalmEmbeddings
 # from transformers import pipeline
@@ -61,6 +60,7 @@ def remove_special_characters(text_list):
     for char in special_chars:
         text_list = [text.replace(char, "") for text in text_list]
     return text_list
+
 
 """ def norwegian_wood(request):
     embedding2 = HuggingFaceEmbeddings()
