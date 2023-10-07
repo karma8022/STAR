@@ -3,7 +3,6 @@ from langchain.embeddings import HuggingFaceEmbeddings
 from django.http import JsonResponse
 from langchain.embeddings import GooglePalmEmbeddings
 from transformers import pipeline
-from pymongo import MongoClient
 import faiss
 from langchain.embeddings import GooglePalmEmbeddings
 # from transformers import pipeline
@@ -14,6 +13,13 @@ from django.views.decorators.csrf import csrf_exempt
 
 from django.db import connection
 
+import re
+
+def is_valid_email(email):
+    # Regular expression for a valid email format
+    email_pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+    return re.match(email_pattern, email)
+
 @csrf_exempt
 def register_user(request):
     if request.method == 'POST':
@@ -21,10 +27,16 @@ def register_user(request):
             data = json.loads(request.body)
             username = data.get('Username')
             password = data.get('Password')
+            email = data.get('Email')
+            queries_data = ''
             print(password)
+            
+            # Check if email is valid
+            if not is_valid_email(email):
+                return JsonResponse({'message': 'Invalid email format'}, status=400)
 
-            if not username or not password:
-                return JsonResponse({'message': 'Username and password are required'}, status=400)
+            if not username or not password or not email:
+                return JsonResponse({'message': 'Username, password and email are required'}, status=400)
             concat_value = username + password
             # Hash the password using bcrypt
             hashed_password = bcrypt.hashpw(
@@ -33,8 +45,8 @@ def register_user(request):
             # Insert the user data into the User_Relation table
             with connection.cursor() as cursor:
                 cursor.execute(
-                    "INSERT INTO User_Relation (username, password) VALUES (%s, %s)",
-                    (username, hashed_password.decode('utf-8'))
+                    "INSERT INTO User_Relation (username, password, email, queries_data) VALUES (%s, %s, %s, %s)",
+                    (username, hashed_password.decode('utf-8'), email, queries_data)
                 )
             return JsonResponse({'message': 'User registered successfully'})
 
