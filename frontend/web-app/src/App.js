@@ -11,7 +11,7 @@ import Home from "./pages/Home.js";
 import "./style.css";
 function App() {
 	return (
-		<div className="bg-base-100">
+		<div className="bg-transparent">
 			<Navbar />
 			<Routes>
 				{/* <Route path="/signup" element={<SignUp />} /> */}

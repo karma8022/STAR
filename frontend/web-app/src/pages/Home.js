@@ -59,7 +59,7 @@ const Home = () => {
 	};
 
 	return (
-		<div className="">
+		<div className="" id="bgbg">
 			<div className="flex justify-center items-center mt-16">
 				<div className="collapse collapse-arrow bg-base-200 w-3/4">
 					<input type="radio" name="my-accordion-2" />
@@ -349,7 +349,7 @@ const Home = () => {
 			</div>
 
 			{/* sections */}
-			<div id="major_projects" className="p-8 bg-base-200 m-8">
+			<div id="major_projects" className="p-8 bg-base-300 m-8">
 				<div className="flex justify-start">
 					{" "}
 					<div className="text-4xl text-left p-4"> Question </div>
@@ -431,7 +431,7 @@ const Home = () => {
 					</div>
 				</div>
 			</div>
-			<div id="mlds_projects" className="hidden p-8 bg-secondary m-8">
+			<div id="mlds_projects" className="hidden p-8 bg-base-300 m-8">
 				<div className="flex justify-start">
 					{" "}
 					<div className="text-4xl text-left p-4"> Question </div>
@@ -595,7 +595,7 @@ const Home = () => {
 					</div>
 				</div>
 			</div>
-			<div id="web_dev_projects" className="hidden p-8 bg-purple-300 m-8">
+			<div id="web_dev_projects" className="hidden p-8 bg-base-300 m-8">
 				<div className="flex justify-start">
 					{" "}
 					<div className="text-4xl text-left p-4"> Question </div>
@@ -680,7 +680,7 @@ const Home = () => {
 					</div>
 				</div>
 			</div>
-			<div id="game_dev_projects" className="hidden p-8 bg-rose-300 m-8">
+			<div id="game_dev_projects" className="hidden p-8 bg-base-300 m-8">
 				<div className="flex justify-start">
 					{" "}
 					<div className="text-4xl text-left p-4"> Question </div>
