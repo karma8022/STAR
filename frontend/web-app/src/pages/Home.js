@@ -2,8 +2,12 @@ import { QuestionMarkCircleIcon } from "@heroicons/react/24/outline";
 import { CheckBadgeIcon } from "@heroicons/react/24/solid";
 import React, { useState } from "react";
 
-const Projects = () => {
+const Home = () => {
 	const [userQuery, setuserQuery] = useState("");
+    const [responseAnswer, setresponseAnswer] = useState("");
+    const [responseSections, setresponseSections] = useState([]);
+	const [responseReferences, setResponseReferences] = useState([])
+
 	return (
 		<div className="">
 			<div className="flex justify-center items-center mt-16">
@@ -16,7 +20,11 @@ const Projects = () => {
 						</div>
 					</div>
 					<div className="collapse-content text-2xl">
-						<p>hello</p>
+						<p>
+							You are requested to send a query related to one of
+							the topics mentioned below. Keep the query relevant
+							to the topic you have chosen.
+						</p>
 					</div>
 				</div>
 			</div>
@@ -81,7 +89,7 @@ const Projects = () => {
 						}}
 					>
 						{" "}
-						Major
+						Topic 1
 					</div>
 					<div
 						className="text-xl tab"
@@ -130,7 +138,7 @@ const Projects = () => {
 								.classList.remove("hidden");
 						}}
 					>
-						ML & DS
+						Topic 2
 					</div>
 					<div
 						className="text-xl tab"
@@ -179,7 +187,7 @@ const Projects = () => {
 								.classList.remove("hidden");
 						}}
 					>
-						PC & Mobile Apps
+						Topic 3
 					</div>
 					<div
 						className="text-xl tab"
@@ -228,7 +236,7 @@ const Projects = () => {
 								.classList.remove("hidden");
 						}}
 					>
-						Web Dev
+						Topic 4
 					</div>
 					<div
 						className="text-xl tab"
@@ -277,7 +285,7 @@ const Projects = () => {
 								.classList.remove("hidden");
 						}}
 					>
-						Game Dev
+						Topic 5
 					</div>
 				</div>
 			</div>
@@ -323,7 +331,7 @@ const Projects = () => {
 
 				<div className="flex justify-start">
 					{" "}
-					<div className="text-4xl text-left p-4"> Response</div>
+					<div className="text-4xl text-left p-4">Response</div>
 				</div>
 				<div className="flex justify-start flex-col gap-4">
 					{" "}
@@ -332,26 +340,25 @@ const Projects = () => {
 						Sections Referred
 					</div>
 					<div className="gap-2 my-3">
-						<div className="mx-4 badge badge-primary p-4 text-2xl">
+						{responseSections.length > 0 ? (<div className="mx-4 badge badge-primary p-4 text-2xl">
 							accent
-						</div>
-						<div className="mx-4 badge badge-primary p-4 text-2xl">
-							accent
-						</div>
+						</div>): null}
 					</div>
 					<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
 						{" "}
 						Response
 					</div>
 					<div className="text-2xl mx-4">
-						Lorem ipsum dolor sit amet consectetur adipis
+						{responseAnswer? responseAnswer: (<progress className="progress w-56"></progress>)
+}
 					</div>
 					<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
 						{" "}
 						References
 					</div>
 					<div className="text-2xl mx-4">
-						Lorem ipsum dolor sit amet consectetur adipis
+						{responseAnswer? responseAnswer: (<progress className="progress w-56"></progress>)
+}
 					</div>
 				</div>
 			</div>
@@ -396,26 +403,25 @@ const Projects = () => {
 						Sections Referred
 					</div>
 					<div className="gap-2 my-3">
-						<div className="mx-4 badge badge-primary p-4 text-2xl">
+						{responseSections.length > 0 ? (<div className="mx-4 badge badge-primary p-4 text-2xl">
 							accent
-						</div>
-						<div className="mx-4 badge badge-primary p-4 text-2xl">
-							accent
-						</div>
+						</div>): null}
 					</div>
 					<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
 						{" "}
 						Response
 					</div>
 					<div className="text-2xl mx-4">
-						Lorem ipsum dolor sit amet consectetur adipis
+						{responseAnswer? responseAnswer: (<progress className="progress w-56"></progress>)
+}
 					</div>
 					<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
 						{" "}
 						References
 					</div>
 					<div className="text-2xl mx-4">
-						Lorem ipsum dolor sit amet consectetur adipis
+						{responseAnswer? responseAnswer: (<progress className="progress w-56"></progress>)
+}
 					</div>
 				</div>
 			</div>
@@ -460,26 +466,25 @@ const Projects = () => {
 						Sections Referred
 					</div>
 					<div className="gap-2 my-3">
-						<div className="mx-4 badge badge-primary p-4 text-2xl">
+						{responseSections.length > 0 ? (<div className="mx-4 badge badge-primary p-4 text-2xl">
 							accent
-						</div>
-						<div className="mx-4 badge badge-primary p-4 text-2xl">
-							accent
-						</div>
+						</div>): null}
 					</div>
 					<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
 						{" "}
 						Response
 					</div>
 					<div className="text-2xl mx-4">
-						Lorem ipsum dolor sit amet consectetur adipis
+						{responseAnswer? responseAnswer: (<progress className="progress w-56"></progress>)
+}
 					</div>
 					<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
 						{" "}
 						References
 					</div>
 					<div className="text-2xl mx-4">
-						Lorem ipsum dolor sit amet consectetur adipis
+						{responseAnswer? responseAnswer: (<progress className="progress w-56"></progress>)
+}
 					</div>
 				</div>
 			</div>
@@ -524,26 +529,25 @@ const Projects = () => {
 						Sections Referred
 					</div>
 					<div className="gap-2 my-3">
-						<div className="mx-4 badge badge-primary p-4 text-2xl">
+						{responseSections.length > 0 ? (<div className="mx-4 badge badge-primary p-4 text-2xl">
 							accent
-						</div>
-						<div className="mx-4 badge badge-primary p-4 text-2xl">
-							accent
-						</div>
+						</div>): null}
 					</div>
 					<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
 						{" "}
 						Response
 					</div>
 					<div className="text-2xl mx-4">
-						Lorem ipsum dolor sit amet consectetur adipis
+						{responseAnswer? responseAnswer: (<progress className="progress w-56"></progress>)
+}
 					</div>
 					<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
 						{" "}
 						References
 					</div>
 					<div className="text-2xl mx-4">
-						Lorem ipsum dolor sit amet consectetur adipis links
+						{responseAnswer? responseAnswer: (<progress className="progress w-56"></progress>)
+} links
 					</div>
 				</div>
 			</div>
@@ -589,26 +593,25 @@ const Projects = () => {
 						Sections Referred
 					</div>
 					<div className="gap-2 my-3">
-						<div className="mx-4 badge badge-primary p-4 text-2xl">
+						{responseSections.length > 0 ? (<div className="mx-4 badge badge-primary p-4 text-2xl">
 							accent
-						</div>
-						<div className="mx-4 badge badge-primary p-4 text-2xl">
-							accent
-						</div>
+						</div>): null}
 					</div>
 					<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
 						{" "}
 						Response
 					</div>
 					<div className="text-2xl mx-4">
-						Lorem ipsum dolor sit amet consectetur adipis
+						{responseAnswer? responseAnswer: (<progress className="progress w-56"></progress>)
+}
 					</div>
 					<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
 						{" "}
 						References
 					</div>
 					<div className="text-2xl mx-4">
-						Lorem ipsum dolor sit amet consectetur adipis
+						{responseAnswer? responseAnswer: (<progress className="progress w-56"></progress>)
+}
 					</div>
 				</div>
 			</div>
@@ -623,4 +626,4 @@ const Projects = () => {
 	);
 };
 
-export default Projects;
+export default Home;

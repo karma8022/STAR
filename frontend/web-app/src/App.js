@@ -10,7 +10,7 @@ import About from "./pages/About";
 import Home from "./pages/Home.js";
 import "./style.css";
 function App() {
-  return (
+	return (
 		<div className="bg-base-100">
 			<Navbar />
 			<Routes>
@@ -23,7 +23,7 @@ function App() {
 				<Route path="/about" element={<About />} />
 			</Routes>
 		</div>
-  );
+	);
 }
 
 export default App;
