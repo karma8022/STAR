@@ -1,13 +1,13 @@
 from django.shortcuts import render
 from langchain.embeddings import HuggingFaceEmbeddings
-from django.http import JsonResponse
+from django.http import JsonResponse, QueryDict
 from langchain.embeddings import GooglePalmEmbeddings
 from transformers import pipeline
 import faiss
 from langchain.embeddings import GooglePalmEmbeddings
 # from transformers import pipeline
 from langchain.vectorstores import FAISS
-
+import bcrypt
 import json
 from django.views.decorators.csrf import csrf_exempt
 
@@ -23,6 +23,7 @@ def is_valid_email(email):
 @csrf_exempt
 def register_user(request):
     if request.method == 'POST':
+        print(request.body)
         try:
             data = json.loads(request.body)
             username = data.get('Username')
@@ -106,8 +107,6 @@ def turing_paper(request):
 
     # Return all answers as a JSON response
     return JsonResponse({'answers': answers})
-
-from transformers import pipeline
 
 def psych(request):
     embedding2 = GooglePalmEmbeddings(google_api_key="AIzaSyBysL_SjXQkJ8lI1WPTz4VwyH6fxHijGUE")
