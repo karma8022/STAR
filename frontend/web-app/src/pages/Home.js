@@ -1,19 +1,56 @@
 import { QuestionMarkCircleIcon } from "@heroicons/react/24/outline";
 import { CheckBadgeIcon } from "@heroicons/react/24/solid";
 import React, { useState } from "react";
+import { BaseUrlContext } from "../context/BaseUrlContext";
+import axios from "axios";
 
 const Home = () => {
 	const [userQuery, setuserQuery] = useState("");
-    const [responseAnswer, setresponseAnswer] = useState("");
-    const [responseSections, setresponseSections] = useState([]);
-	const [responseReferences, setResponseReferences] = useState([])
+	const [responseAnswer, setresponseAnswer] = useState("");
+	const [responseSections, setresponseSections] = useState([]);
+	const [responseReferences, setResponseReferences] = useState([]);
+	const base_url = React.useContext(BaseUrlContext).baseUrl;
+	const getResponses = async () => {
+		const response = await axios
+			.get(
+				`${base_url}/query/nasa/`,
+				{
+					query: userQuery,
+				},
+				{
+					// headers: {
+					// 	"Content-Type": "application/json", // Set the content type to JSON
+					// },
+				}
+			)
+			.then((response) => {
+				return response;
+			})
+			.catch((error) => {
+				console.error(error);
+				alert("server not running! a simulated response is being sent");
+				const response = {
+					data: {
+						message: "simulation",
+					},
+				};
+				return response;
+			});
+		if (response.data.message === "simulation") {
+			alert("example. ");
+		} else if (response.data.message === "success") {
+			setresponseAnswer(response.data.answer);
+			setresponseSections(response.data.sections);
+			setResponseReferences(response.data.references);
+		}
+	};
 
 	return (
 		<div className="">
 			<div className="flex justify-center items-center mt-16">
 				<div className="collapse collapse-arrow bg-base-200 w-3/4">
 					<input type="radio" name="my-accordion-2" />
-					<div className="collapse-title text-xl font-medium text-3xl">
+					<div className="collapse-title font-medium text-3xl">
 						<div className="flex  items-center">
 							How to Use this Page{"   "}
 							<QuestionMarkCircleIcon className="w-8 h-8 inline mx-4" />
@@ -324,7 +361,12 @@ const Home = () => {
 					/>
 				</div>
 
-				<button className="btn-lg btn-secondary rounded-xl m-4 text-2xl">
+				<button
+					className="btn-lg btn-secondary rounded-xl m-4 text-2xl"
+					onClick={() => {
+						getResponses();
+					}}
+				>
 					{" "}
 					Ask!
 				</button>
@@ -340,25 +382,37 @@ const Home = () => {
 						Sections Referred
 					</div>
 					<div className="gap-2 my-3">
-						{responseSections.length > 0 ? (<div className="mx-4 badge badge-primary p-4 text-2xl">
-							accent
-						</div>): null}
+						{responseSections.length > 0
+							? responseSections.map((thing) => {
+									return (
+										<div className="mx-4 badge badge-primary p-4 text-2xl">
+											{thing}
+										</div>
+									);
+							  })
+							: null}
 					</div>
 					<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
 						{" "}
 						Response
 					</div>
 					<div className="text-2xl mx-4">
-						{responseAnswer? responseAnswer: (<progress className="progress w-56"></progress>)
-}
+						{responseAnswer ? (
+							responseAnswer
+						) : (
+							<progress className="progress w-56"></progress>
+						)}
 					</div>
 					<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
 						{" "}
 						References
 					</div>
 					<div className="text-2xl mx-4">
-						{responseAnswer? responseAnswer: (<progress className="progress w-56"></progress>)
-}
+						{responseReferences ? (
+							responseReferences
+						) : (
+							<progress className="progress w-56"></progress>
+						)}
 					</div>
 				</div>
 			</div>
@@ -387,7 +441,12 @@ const Home = () => {
 					/>
 				</div>
 
-				<button className="btn-lg btn-secondary rounded-xl m-4 text-2xl">
+				<button
+					className="btn-lg btn-secondary rounded-xl m-4 text-2xl"
+					onClick={() => {
+						getResponses();
+					}}
+				>
 					{" "}
 					Ask!
 				</button>
@@ -403,25 +462,37 @@ const Home = () => {
 						Sections Referred
 					</div>
 					<div className="gap-2 my-3">
-						{responseSections.length > 0 ? (<div className="mx-4 badge badge-primary p-4 text-2xl">
-							accent
-						</div>): null}
+						{responseSections.length > 0
+							? responseSections.map((thing) => {
+									return (
+										<div className="mx-4 badge badge-primary p-4 text-2xl">
+											{thing}
+										</div>
+									);
+							  })
+							: null}
 					</div>
 					<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
 						{" "}
 						Response
 					</div>
 					<div className="text-2xl mx-4">
-						{responseAnswer? responseAnswer: (<progress className="progress w-56"></progress>)
-}
+						{responseAnswer ? (
+							responseAnswer
+						) : (
+							<progress className="progress w-56"></progress>
+						)}
 					</div>
 					<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
 						{" "}
 						References
 					</div>
 					<div className="text-2xl mx-4">
-						{responseAnswer? responseAnswer: (<progress className="progress w-56"></progress>)
-}
+						{responseReferences ? (
+							responseReferences
+						) : (
+							<progress className="progress w-56"></progress>
+						)}
 					</div>
 				</div>
 			</div>
@@ -450,7 +521,12 @@ const Home = () => {
 					/>
 				</div>
 
-				<button className="btn-lg btn-secondary rounded-xl m-4 text-2xl">
+				<button
+					className="btn-lg btn-secondary rounded-xl m-4 text-2xl"
+					onClick={() => {
+						getResponses();
+					}}
+				>
 					{" "}
 					Ask!
 				</button>
@@ -466,25 +542,37 @@ const Home = () => {
 						Sections Referred
 					</div>
 					<div className="gap-2 my-3">
-						{responseSections.length > 0 ? (<div className="mx-4 badge badge-primary p-4 text-2xl">
-							accent
-						</div>): null}
+						{responseSections.length > 0
+							? responseSections.map((thing) => {
+									return (
+										<div className="mx-4 badge badge-primary p-4 text-2xl">
+											{thing}
+										</div>
+									);
+							  })
+							: null}
 					</div>
 					<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
 						{" "}
 						Response
 					</div>
 					<div className="text-2xl mx-4">
-						{responseAnswer? responseAnswer: (<progress className="progress w-56"></progress>)
-}
+						{responseAnswer ? (
+							responseAnswer
+						) : (
+							<progress className="progress w-56"></progress>
+						)}
 					</div>
 					<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
 						{" "}
 						References
 					</div>
 					<div className="text-2xl mx-4">
-						{responseAnswer? responseAnswer: (<progress className="progress w-56"></progress>)
-}
+						{responseReferences ? (
+							responseReferences
+						) : (
+							<progress className="progress w-56"></progress>
+						)}
 					</div>
 				</div>
 			</div>
@@ -513,7 +601,12 @@ const Home = () => {
 					/>
 				</div>
 
-				<button className="btn-lg btn-secondary rounded-xl m-4 text-2xl">
+				<button
+					className="btn-lg btn-secondary rounded-xl m-4 text-2xl"
+					onClick={() => {
+						getResponses();
+					}}
+				>
 					{" "}
 					Ask!
 				</button>
@@ -529,25 +622,38 @@ const Home = () => {
 						Sections Referred
 					</div>
 					<div className="gap-2 my-3">
-						{responseSections.length > 0 ? (<div className="mx-4 badge badge-primary p-4 text-2xl">
-							accent
-						</div>): null}
+						{responseSections.length > 0
+							? responseSections.map((thing) => {
+									return (
+										<div className="mx-4 badge badge-primary p-4 text-2xl">
+											{thing}
+										</div>
+									);
+							  })
+							: null}
 					</div>
 					<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
 						{" "}
 						Response
 					</div>
 					<div className="text-2xl mx-4">
-						{responseAnswer? responseAnswer: (<progress className="progress w-56"></progress>)
-}
+						{responseAnswer ? (
+							responseAnswer
+						) : (
+							<progress className="progress w-56"></progress>
+						)}
 					</div>
 					<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
 						{" "}
 						References
 					</div>
 					<div className="text-2xl mx-4">
-						{responseAnswer? responseAnswer: (<progress className="progress w-56"></progress>)
-} links
+						{responseAnswer ? (
+							responseAnswer
+						) : (
+							<progress className="progress w-56"></progress>
+						)}{" "}
+						links
 					</div>
 				</div>
 			</div>
@@ -576,7 +682,12 @@ const Home = () => {
 					/>
 				</div>
 
-				<button className="btn-lg btn-secondary rounded-xl m-4 text-2xl">
+				<button
+					className="btn-lg btn-secondary rounded-xl m-4 text-2xl"
+					onClick={() => {
+						getResponses();
+					}}
+				>
 					{" "}
 					Ask!
 				</button>
@@ -593,25 +704,37 @@ const Home = () => {
 						Sections Referred
 					</div>
 					<div className="gap-2 my-3">
-						{responseSections.length > 0 ? (<div className="mx-4 badge badge-primary p-4 text-2xl">
-							accent
-						</div>): null}
+						{responseSections.length > 0
+							? responseSections.map((thing) => {
+									return (
+										<div className="mx-4 badge badge-primary p-4 text-2xl">
+											{thing}
+										</div>
+									);
+							  })
+							: null}
 					</div>
 					<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
 						{" "}
 						Response
 					</div>
 					<div className="text-2xl mx-4">
-						{responseAnswer? responseAnswer: (<progress className="progress w-56"></progress>)
-}
+						{responseAnswer ? (
+							responseAnswer
+						) : (
+							<progress className="progress w-56"></progress>
+						)}
 					</div>
 					<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
 						{" "}
 						References
 					</div>
 					<div className="text-2xl mx-4">
-						{responseAnswer? responseAnswer: (<progress className="progress w-56"></progress>)
-}
+						{responseReferences ? (
+							responseReferences
+						) : (
+							<progress className="progress w-56"></progress>
+						)}
 					</div>
 				</div>
 			</div>
