@@ -6,14 +6,18 @@ const Contact = () => {
 			<div className="flex justify-center items-center mt-16">
 				<div className="collapse collapse-arrow bg-base-200 w-3/4">
 					<input type="radio" name="my-accordion-2" />
-					<div className="collapse-title text-xl font-medium text-3xl">
-						<div className="flex  items-center">
+					<div className="collapse-title font-medium text-3xl">
+						<div className="flex  items-center text-3xl">
 							How to Use this Page{"   "}
 							<QuestionMarkCircleIcon className="w-8 h-8 inline mx-4" />
 						</div>
 					</div>
 					<div className="collapse-content text-2xl">
-						<p>hello</p>
+						<p>
+							Please refer to the links given here to further
+							verify and learn about the various sources used by
+							our LLM. These are Provided by NASA.{" "}
+						</p>
 					</div>
 				</div>
 			</div>

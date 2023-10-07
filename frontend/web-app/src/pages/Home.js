@@ -450,7 +450,7 @@ const Home = () => {
 					</div>
 				</div>
 			</div>
-			<div id="mlds_projects" className="p-8 bg-base-300 m-8">
+			<div id="mlds_projects" className="hidden p-8 bg-base-300 m-8">
 				<div className="flex justify-start">
 					{" "}
 					<div className="text-4xl text-left p-4"> Question </div>
@@ -546,7 +546,7 @@ const Home = () => {
 					</div>
 				</div>
 			</div>
-			<div id="app_dev_projects" className="p-8 bg-base-300 m-8">
+			<div id="app_dev_projects" className="hidden p-8 bg-base-300 m-8">
 				<div className="flex justify-start">
 					{" "}
 					<div className="text-4xl text-left p-4"> Question </div>
@@ -642,7 +642,7 @@ const Home = () => {
 					</div>
 				</div>
 			</div>
-			<div id="web_dev_projects" className="p-8 bg-base-300 m-8">
+			<div id="web_dev_projects" className="hidden p-8 bg-base-300 m-8">
 				<div className="flex justify-start">
 					{" "}
 					<div className="text-4xl text-left p-4"> Question </div>
@@ -738,7 +738,7 @@ const Home = () => {
 					</div>
 				</div>
 			</div>
-			<div id="game_dev_projects" className="p-8 bg-base-300 m-8">
+			<div id="game_dev_projects" className="hidden p-8 bg-base-300 m-8">
 				<div className="flex justify-start">
 					{" "}
 					<div className="text-4xl text-left p-4"> Question </div>
