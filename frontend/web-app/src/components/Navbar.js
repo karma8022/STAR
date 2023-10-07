@@ -3,12 +3,15 @@ import "../input.css";
 import "../style.css";
 
 import {
-  SunIcon,
-  MoonIcon,
   BookmarkIcon,
   DevicePhoneMobileIcon,
   InformationCircleIcon,
   Bars3Icon,
+  UserCircleIcon,
+  DocumentCheckIcon,
+  QuestionMarkCircleIcon,
+  ArrowLeftCircleIcon,
+  ArrowLeftOnRectangleIcon,
 } from "@heroicons/react/24/solid";
 import { NavLink } from "react-router-dom";
 import { IconUserBolt } from "@tabler/icons-react";
@@ -42,20 +45,26 @@ export function Navbar() {
           <ul className="menu menu-horizontal px-1">
             <li className="text-lg md:text-2xl">
               <NavLink to={"/projects"} id="contact_element">
-                <BookmarkIcon className="w-8 h-8" />
-                Projects
+                <QuestionMarkCircleIcon className="w-8 h-8" />
+                Query
               </NavLink>
             </li>
             <li className="text-lg md:text-2xl">
               <NavLink to={"/about"} id="contact_element">
-                <InformationCircleIcon className="w-8 h-8" />
-                About
+                <DocumentCheckIcon className="w-8 h-8" />
+                Docs
               </NavLink>
             </li>
             <li className="text-lg md:text-2xl">
               <NavLink to={"/contact"} id="contact_element">
-                <DevicePhoneMobileIcon className="w-8 h-8" />
-                Contact
+                <UserCircleIcon className="w-8 h-8" />
+                Profile
+              </NavLink>
+            </li>
+            <li className="text-lg md:text-2xl">
+              <NavLink to={"/contact"} id="contact_element">
+                <ArrowLeftOnRectangleIcon className="w-8 h-8" />
+                Logout
               </NavLink>
             </li>
           </ul>
