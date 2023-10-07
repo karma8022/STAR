@@ -1,18 +1,18 @@
 from django.shortcuts import render
-# from langchain.embeddings import HuggingFaceEmbeddings
+from langchain.embeddings import HuggingFaceEmbeddings
 from django.http import JsonResponse
 from langchain.embeddings import GooglePalmEmbeddings
 from transformers import pipeline
 from pymongo import MongoClient
 import faiss
-# from langchain.embeddings import GooglePalmEmbeddings
+from langchain.embeddings import GooglePalmEmbeddings
 # from transformers import pipeline
+from langchain.vectorstores import FAISS
 
 import json
 from django.views.decorators.csrf import csrf_exempt
 
 from django.db import connection
-import bcrypt
 
 @csrf_exempt
 def register_user(request):
@@ -62,7 +62,7 @@ def remove_special_characters(text_list):
         text_list = [text.replace(char, "") for text in text_list]
     return text_list
 
-""" def norwegian_wood(request):
+def norwegian_wood(request):
     embedding2 = HuggingFaceEmbeddings()
     vdb_chunks_HF = FAISS.load_local("query/vdb_chunks_HF", embedding2, index_name="indexHF")
     query = request.GET.get('query', '')
@@ -199,4 +199,51 @@ def nasa(request):
     }
 
     return JsonResponse(response_data)
-    return JsonResponse({'answers': answers}) """
+    return JsonResponse({'answers': answers})
+
+def bulletin(request):
+    # Initialize Google PALM embeddings
+    embedding2 = GooglePalmEmbeddings(google_api_key="AIzaSyBysL_SjXQkJ8lI1WPTz4VwyH6fxHijGUE")
+
+    # Load the FAISS vector store
+    vdb_chunks_HF = FAISS.load_local("query/vdb_chunks_HF", embedding2, index_name="indexBulletin")
+
+    # Get the query from the request's GET parameters
+    query = request.GET.get('query', '')
+
+    # Retrieve relevant documents
+    ans = vdb_chunks_HF.as_retriever().get_relevant_documents(query)
+    answers = [doc.page_content for doc in ans] if ans else []
+
+    # Merge and summarize the answers
+    top_5_results = answers[:10]
+    concatenated_answer = " ".join(top_5_results)
+    combined_query = f"{query} Context: {concatenated_answer}"
+    new_ans = vdb_chunks_HF.as_retriever().get_relevant_documents(combined_query)
+    new_final_ans = [doc.page_content for doc in new_ans] if new_ans else []
+    merged_result = " ".join(new_final_ans)
+
+    # Initialize the BERT summarization pipeline
+    summarizer = pipeline("summarization")
+
+    # Summarize the merged result using BERT
+    summary = summarizer(merged_result, max_length=150, min_length=30, do_sample=False)
+
+    # Determine the RAG status based on summary (example: length-based)
+    summary_text = summary[0]["summary_text"]
+    if len(summary_text) < 50:
+        rag_status = "Green"
+    elif len(summary_text) < 100:
+        rag_status = "Amber"
+    else:
+        rag_status = "Red"
+
+    # Return answers, summary, and RAG status as a JSON response
+    response_data = {
+        'answers': answers,
+        'summary': summary_text,
+        'rag_status': rag_status,
+    }
+
+    return JsonResponse(response_data)
+    return JsonResponse({'answers': answers})
