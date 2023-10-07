@@ -30,7 +30,7 @@ export function Navbar() {
           <IconUserBolt className="w-8 h-8" />
           <NavLink to={"/"}>
             <div className="btn btn-ghost normal-case text-lg md:text-2xl">
-              Krishnaraj
+              STAR APP
             </div>
           </NavLink>
         </div>
