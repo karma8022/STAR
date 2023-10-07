@@ -1,0 +1,7 @@
+POST https://vq9tc4j9-8000.inc1.devtunnels.ms/query/login/
+Content-Type: application/json
+
+{
+    "Username": "Testdsd123dasdssd@co",
+    "Password": "StrongsdPfasdsdf@ssw0rd$"
+}

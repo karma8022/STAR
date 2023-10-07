@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Navbar } from "./components/Navbar";
 import { Route, Routes } from "react-router-dom";
 // import SignIn from "./pages/Signin.jsx";
-import SignUp from "./pages/Signup.jsx";
+// import SignUp from "./pages/Signup.jsx";
 import Profile from "./pages/Profile.js";
 import Docs from "./pages/Docs";
 import Projects from "./pages/Projects";
@@ -11,7 +11,7 @@ import Home from "./pages/Home.js";
 import "./style.css";
 function App() {
 	return (
-		<div className="bg-base-100">
+		<div className="bg-transparent">
 			<Navbar />
 			<Routes>
 				{/* <Route path="/signup" element={<SignUp />} /> */}
