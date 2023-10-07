@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Navbar } from "./components/Navbar";
 import { Route, Routes } from "react-router-dom";
 // import SignIn from "./pages/Signin.jsx";
-// import SignUp from "./pages/Signup.jsx";
+import SignUp from "./pages/Signup.jsx";
 import Profile from "./pages/Profile.js";
 import Docs from "./pages/Docs";
 import Projects from "./pages/Projects";

@@ -1,7 +1,8 @@
-POST http://127.0.0.1:3000/query/register/
+POST http://127.0.0.1:8000/query/register/
 Content-Type: application/json
 
 {
     "Username": "Test123@co",
-    "Password": "StrongP@ssw0rd$"
+    "Password": "StrongP@ssw0rd$",
+    "Email": "jssms2026@gmail.com"
 }
