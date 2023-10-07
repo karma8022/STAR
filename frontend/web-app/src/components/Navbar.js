@@ -17,7 +17,6 @@ import { NavLink } from "react-router-dom";
 import { IconUserBolt } from "@tabler/icons-react";
 
 export function Navbar() {
-
   return (
     <div className="pr-4 mr-4 z-50">
       <div
