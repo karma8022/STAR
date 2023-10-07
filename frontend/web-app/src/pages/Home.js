@@ -9,40 +9,53 @@ const Home = () => {
 	const [responseAnswer, setresponseAnswer] = useState("");
 	const [responseSections, setresponseSections] = useState([]);
 	const [responseReferences, setResponseReferences] = useState([]);
+	const [responseSummary, setresponseSummary] = useState("");
+
 	const base_url = React.useContext(BaseUrlContext).baseUrl;
 	const getResponses = async () => {
-		const response = await axios
-			.get(
-				`${base_url}/query/nasa/`,
-				{
-					query: userQuery,
-				},
-				{
-					// headers: {
-					// 	"Content-Type": "application/json", // Set the content type to JSON
-					// },
-				}
-			)
+		const params = {
+			query: "life factor",
+		};
+
+		axios
+			.get(`${base_url}/query/nasa/`, { params })
 			.then((response) => {
-				return response;
+				console.log(response.data);
+				setresponseAnswer(response.data.answers);
+				setresponseSummary(response.data.summary);
 			})
 			.catch((error) => {
-				console.error(error);
-				alert("server not running! a simulated response is being sent");
-				const response = {
-					data: {
-						message: "simulation",
-					},
-				};
-				return response;
+				console.error("Error:", error.message);
 			});
-		if (response.data.message === "simulation") {
-			alert("example. ");
-		} else if (response.data.message === "success") {
-			setresponseAnswer(response.data.answer);
-			setresponseSections(response.data.sections);
-			setResponseReferences(response.data.references);
-		}
+
+		// 	const response = await axios
+		// 		.get(
+		// 			`${base_url}/query/nasa/`,
+		// 			{},
+		// 			{
+		// 				query: userQuery,
+		// 			}
+		// 		)
+		// 		.then((response) => {
+		// 			return response;
+		// 		})
+		// 		.catch((error) => {
+		// 			console.error(error);
+		// 			alert("server not running! a simulated response is being sent");
+		// 			const response = {
+		// 				data: {
+		// 					message: "simulation",
+		// 				},
+		// 			};
+		// 			return response;
+		// 		});
+		// 	if (response.data.message === "simulation") {
+		// 		alert("example. ");
+		// 	} else if (response.data.message === "success") {
+		// 		setresponseAnswer(response.data.answer);
+		// 		setresponseSections(response.data.sections);
+		// 		setResponseReferences(response.data.references);
+		// 	}
 	};
 
 	return (
@@ -398,7 +411,9 @@ const Home = () => {
 					</div>
 					<div className="text-2xl mx-4">
 						{responseAnswer ? (
-							responseAnswer
+							responseAnswer.map((thing) => {
+								return <div>{thing}</div>;
+							})
 						) : (
 							<progress className="progress w-56"></progress>
 						)}
@@ -478,7 +493,9 @@ const Home = () => {
 					</div>
 					<div className="text-2xl mx-4">
 						{responseAnswer ? (
-							responseAnswer
+							responseAnswer.map((thing) => {
+								return <div>{thing}</div>;
+							})
 						) : (
 							<progress className="progress w-56"></progress>
 						)}
@@ -558,7 +575,9 @@ const Home = () => {
 					</div>
 					<div className="text-2xl mx-4">
 						{responseAnswer ? (
-							responseAnswer
+							responseAnswer.map((thing) => {
+								return <div>{thing}</div>;
+							})
 						) : (
 							<progress className="progress w-56"></progress>
 						)}
@@ -638,7 +657,9 @@ const Home = () => {
 					</div>
 					<div className="text-2xl mx-4">
 						{responseAnswer ? (
-							responseAnswer
+							responseAnswer.map((thing) => {
+								return <div>{thing}</div>;
+							})
 						) : (
 							<progress className="progress w-56"></progress>
 						)}
@@ -649,7 +670,9 @@ const Home = () => {
 					</div>
 					<div className="text-2xl mx-4">
 						{responseAnswer ? (
-							responseAnswer
+							responseAnswer.map((thing) => {
+								return <div>{thing}</div>;
+							})
 						) : (
 							<progress className="progress w-56"></progress>
 						)}{" "}
@@ -720,7 +743,9 @@ const Home = () => {
 					</div>
 					<div className="text-2xl mx-4">
 						{responseAnswer ? (
-							responseAnswer
+							responseAnswer.map((thing) => {
+								return <div>{thing}</div>;
+							})
 						) : (
 							<progress className="progress w-56"></progress>
 						)}
