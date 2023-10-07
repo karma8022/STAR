@@ -7,18 +7,17 @@ import { LockClosedIcon } from "@heroicons/react/24/solid";
 
 const Signin = () => {
 	const { base_url } = React.useContext(BaseUrlContext);
-	const [email, setEmail] = useState("");
+	const [UserName, setUserName] = useState("");
 	const [password, setPassword] = useState("");
 	const [error, setError] = useState(""); // Declare and initialize setError
 	const navigate = useNavigate();
 	const getResponses = async () => {
 		const response = await axios
 			.post(
-				`${base_url}/query/register/`,
+				`${base_url}/query/login/`,
 				{
-					Username: "uasdfasdfaser",
-					Password: "passasdfasdf",
-					Email: "kpt3@gmail.com",
+					Username: UserName,
+					Password: password,
 				},
 				{
 					headers: {
@@ -51,8 +50,8 @@ const Signin = () => {
 		e.preventDefault();
 		setError(""); // Use setError
 		try {
-			await getResponses()
-			navigate("/account");
+			await getResponses();
+			navigate("/");
 		} catch (e) {
 			setError(e.message);
 			console.log(e.message);
@@ -65,12 +64,12 @@ const Signin = () => {
 				<h1 className="text-2xl font-bold">Sign In</h1>
 				<form onSubmit={handleSubmit}>
 					<div className="my-4">
-						<label>Email</label>
+						<label>UserName</label>
 						<div className="my-2 w-full relative rounded-2xl shadow-xl">
 							<input
-								onChange={(e) => setEmail(e.target.value)}
+								onChange={(e) => setUserName(e.target.value)}
 								className="w-full p-2 bg-primary border border-input rounded-2xl"
-								type="email"
+								type="text"
 							/>
 							<IconMailAi className="absolute right-2 top-3 text-gray-400" />
 						</div>

@@ -2,17 +2,22 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BaseUrlContext } from "../context/BaseUrlContext";
-import { IconLock, IconMailAi } from "@tabler/icons-react";
+import { IconLock, IconMailAi, IconUserBolt } from "@tabler/icons-react";
+import { UserEmailContext } from "../context/UserAuth";
 const Signup = () => {
 	const { base_url } = React.useContext(BaseUrlContext);
+	const { userEmail, setUserEmail } = React.useContext(UserEmailContext);
+	const [currentUserEmail, setcurrentUserEmail] = useState("");
+	const [currentUserPassword, setcurrentUserPassword] = useState("");
+	const [currentUser, setcurrentUser] = useState("");
 	const getResponses = async () => {
 		const response = await axios
 			.post(
 				`${base_url}/query/register/`,
 				{
-					Username: "uasdfasdfaser",
-					Password: "passasdfasdf",
-					Email: "kpt3@gmail.com",
+					Username: currentUser,
+					Password: currentUserPassword,
+					Email: currentUserEmail,
 				},
 				{
 					headers: {
@@ -21,6 +26,7 @@ const Signup = () => {
 				}
 			)
 			.then((response) => {
+				setUserEmail(currentUserEmail);
 				return response;
 			})
 			.catch((error) => {
@@ -42,8 +48,6 @@ const Signup = () => {
 		}
 	};
 
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
 	const [error, setError] = useState("");
 	const navigate = useNavigate();
 
@@ -51,8 +55,8 @@ const Signup = () => {
 		e.preventDefault();
 		setError("");
 		try {
-			await getResponses()
-			navigate("/account");
+			await getResponses();
+			navigate("/");
 		} catch (e) {
 			setError(e.message);
 			console.log(e.message);
@@ -69,7 +73,9 @@ const Signup = () => {
 						<label>Email</label>
 						<div className="my-2 w-full relative rounded-2xl shadow-xl">
 							<input
-								onChange={(e) => setEmail(e.target.value)}
+								onChange={(e) =>
+									setcurrentUserEmail(e.target.value)
+								}
 								className="w-full p-2 bg-primary border border-input rounded-2xl"
 								type="email"
 							/>
@@ -77,10 +83,23 @@ const Signup = () => {
 						</div>
 					</div>
 					<div className="my-4">
+						<label>UserName</label>
+						<div className="my-2 w-full relative rounded-2xl shadow-xl">
+							<input
+								onChange={(e) => setcurrentUser(e.target.value)}
+								className="w-full p-2 bg-primary border border-input rounded-2xl"
+								type="text"
+							/>
+							<IconUserBolt className="absolute right-2 top-3 text-gray-400" />
+						</div>
+					</div>
+					<div className="my-4">
 						<label>Password</label>
 						<div className="my-2 w-full relative rounded-2xl shadow-xl">
 							<input
-								onChange={(e) => setPassword(e.target.value)}
+								onChange={(e) =>
+									setcurrentUserPassword(e.target.value)
+								}
 								className="w-full p-2 bg-primary border border-input rounded-2xl"
 								type="password"
 							/>
