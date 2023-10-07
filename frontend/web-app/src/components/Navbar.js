@@ -44,25 +44,25 @@ export function Navbar() {
         >
           <ul className="menu menu-horizontal px-1">
             <li className="text-lg md:text-2xl">
-              <NavLink to={"/projects"} id="contact_element">
+              <NavLink to={"/"} id="contact_element">
                 <QuestionMarkCircleIcon className="w-8 h-8" />
                 Query
               </NavLink>
             </li>
             <li className="text-lg md:text-2xl">
-              <NavLink to={"/about"} id="contact_element">
+              <NavLink to={"/docs"} id="contact_element">
                 <DocumentCheckIcon className="w-8 h-8" />
                 Docs
               </NavLink>
             </li>
             <li className="text-lg md:text-2xl">
-              <NavLink to={"/contact"} id="contact_element">
+              <NavLink to={"/profile"} id="contact_element">
                 <UserCircleIcon className="w-8 h-8" />
                 Profile
               </NavLink>
             </li>
             <li className="text-lg md:text-2xl">
-              <NavLink to={"/contact"} id="contact_element">
+              <NavLink to={"/signin"} id="contact_element">
                 <ArrowLeftOnRectangleIcon className="w-8 h-8" />
                 Logout
               </NavLink>

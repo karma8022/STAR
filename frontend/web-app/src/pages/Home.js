@@ -339,6 +339,20 @@ const Projects = () => {
 							accent
 						</div>
 					</div>
+					<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
+						{" "}
+						Response
+					</div>
+					<div className="text-2xl mx-4">
+						Lorem ipsum dolor sit amet consectetur adipis
+					</div>
+					<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
+						{" "}
+						References
+					</div>
+					<div className="text-2xl mx-4">
+						Lorem ipsum dolor sit amet consectetur adipis
+					</div>
 				</div>
 			</div>
 			<div id="mlds_projects" className="hidden p-8 bg-secondary m-8">
@@ -388,6 +402,20 @@ const Projects = () => {
 						<div className="mx-4 badge badge-primary p-4 text-2xl">
 							accent
 						</div>
+					</div>
+					<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
+						{" "}
+						Response
+					</div>
+					<div className="text-2xl mx-4">
+						Lorem ipsum dolor sit amet consectetur adipis
+					</div>
+					<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
+						{" "}
+						References
+					</div>
+					<div className="text-2xl mx-4">
+						Lorem ipsum dolor sit amet consectetur adipis
 					</div>
 				</div>
 			</div>
@@ -439,6 +467,20 @@ const Projects = () => {
 							accent
 						</div>
 					</div>
+					<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
+						{" "}
+						Response
+					</div>
+					<div className="text-2xl mx-4">
+						Lorem ipsum dolor sit amet consectetur adipis
+					</div>
+					<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
+						{" "}
+						References
+					</div>
+					<div className="text-2xl mx-4">
+						Lorem ipsum dolor sit amet consectetur adipis
+					</div>
 				</div>
 			</div>
 			<div id="web_dev_projects" className="hidden p-8 bg-purple-300 m-8">
@@ -488,6 +530,20 @@ const Projects = () => {
 						<div className="mx-4 badge badge-primary p-4 text-2xl">
 							accent
 						</div>
+					</div>
+					<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
+						{" "}
+						Response
+					</div>
+					<div className="text-2xl mx-4">
+						Lorem ipsum dolor sit amet consectetur adipis
+					</div>
+					<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
+						{" "}
+						References
+					</div>
+					<div className="text-2xl mx-4">
+						Lorem ipsum dolor sit amet consectetur adipis links
 					</div>
 				</div>
 			</div>
@@ -540,7 +596,28 @@ const Projects = () => {
 							accent
 						</div>
 					</div>
+					<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
+						{" "}
+						Response
+					</div>
+					<div className="text-2xl mx-4">
+						Lorem ipsum dolor sit amet consectetur adipis
+					</div>
+					<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
+						{" "}
+						References
+					</div>
+					<div className="text-2xl mx-4">
+						Lorem ipsum dolor sit amet consectetur adipis
+					</div>
 				</div>
+			</div>
+			<div>
+				<br></br>
+				<br></br>
+				<br></br>
+				<br></br>
+				<br></br>
 			</div>
 		</div>
 	);
