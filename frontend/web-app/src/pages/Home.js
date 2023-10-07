@@ -7,6 +7,7 @@ import axios from "axios";
 const Home = () => {
 	const [userQuery, setuserQuery] = useState("");
 	const [responseAnswer, setresponseAnswer] = useState("");
+	const [buttonClicked, setButtonClicked] = useState(false);
 	const [responseSections, setresponseSections] = useState([]);
 	const [responseReferences, setResponseReferences] = useState([]);
 	const [responseSummary, setresponseSummary] = useState("");
@@ -14,7 +15,7 @@ const Home = () => {
 	const base_url = React.useContext(BaseUrlContext).baseUrl;
 	const getResponses = async () => {
 		const params = {
-			query: "life factor",
+			query: userQuery,
 		};
 
 		axios
@@ -144,6 +145,7 @@ const Home = () => {
 					<div
 						className="text-xl tab"
 						onClick={(e) => {
+							setButtonClicked(false);
 							// make this tab active
 							document
 								.getElementById("thetabs")
@@ -193,6 +195,7 @@ const Home = () => {
 					<div
 						className="text-xl tab"
 						onClick={(e) => {
+							setButtonClicked(false);
 							// make this tab active
 							document
 								.getElementById("thetabs")
@@ -242,6 +245,7 @@ const Home = () => {
 					<div
 						className="text-xl tab"
 						onClick={(e) => {
+							setButtonClicked(false);
 							// make this tab active
 							document
 								.getElementById("thetabs")
@@ -291,6 +295,7 @@ const Home = () => {
 					<div
 						className="text-xl tab"
 						onClick={(e) => {
+							setButtonClicked(false);
 							// make this tab active
 							document
 								.getElementById("thetabs")
@@ -378,6 +383,7 @@ const Home = () => {
 					className="btn-lg btn-secondary rounded-xl m-4 text-2xl"
 					onClick={() => {
 						getResponses();
+						setButtonClicked(true);
 					}}
 				>
 					{" "}
@@ -394,16 +400,18 @@ const Home = () => {
 						{" "}
 						Sections Referred
 					</div>
-					<div className="gap-2 my-3">
-						{responseSections.length > 0
-							? responseSections.map((thing) => {
-									return (
-										<div className="mx-4 badge badge-primary p-4 text-2xl">
-											{thing}
-										</div>
-									);
-							  })
-							: null}
+					<div className="gap-2 mx-4">
+						{responseSections.length > 0 ? (
+							responseSections.map((thing) => {
+								return (
+									<div className="mx-4 badge badge-primary p-4 text-2xl">
+										{thing}
+									</div>
+								);
+							})
+						) : buttonClicked ? (
+							<span className="loading loading-infinity loading-lg"></span>
+						) : null}
 					</div>
 					<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
 						{" "}
@@ -414,32 +422,43 @@ const Home = () => {
 							responseAnswer.map((thing) => {
 								return <div>{thing}</div>;
 							})
-						) : (
-							<progress className="progress w-56"></progress>
-						)}
+						) : buttonClicked ? (
+							<span className="loading loading-infinity loading-lg"></span>
+						) : null}
 					</div>
 					<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
 						{" "}
 						References
 					</div>
 					<div className="text-2xl mx-4">
-						{responseReferences ? (
+						{responseReferences.length > 0 ? (
 							responseReferences
-						) : (
-							<progress className="progress w-56"></progress>
-						)}
+						) : buttonClicked ? (
+							<span className="loading loading-infinity loading-lg"></span>
+						) : null}
+					</div>
+					<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
+						{" "}
+						Summary
+					</div>
+					<div className="text-2xl mx-4">
+						{responseSummary ? (
+							responseSummary
+						) : buttonClicked ? (
+							<span className="loading loading-infinity loading-lg"></span>
+						) : null}
 					</div>
 				</div>
 			</div>
-			<div id="mlds_projects" className="hidden p-8 bg-base-300 m-8">
+			<div id="mlds_projects" className="p-8 bg-base-300 m-8">
 				<div className="flex justify-start">
 					{" "}
 					<div className="text-4xl text-left p-4"> Question </div>
 				</div>
 
 				{/* <ProjectSection
-					ordered_projects={ordered_projects_mlds}
-					svg_name={"mldssvg"}
+					ordered_projects={ordered_projects_major}
+					svg_name={"majorssvg"}
 				/> */}
 				<div className="flex flex-col justify-between w-full items-start">
 					<span className=" text-3xl m-4 label-text text-left w-2/3">
@@ -460,6 +479,7 @@ const Home = () => {
 					className="btn-lg btn-secondary rounded-xl m-4 text-2xl"
 					onClick={() => {
 						getResponses();
+						setButtonClicked(true);
 					}}
 				>
 					{" "}
@@ -468,7 +488,7 @@ const Home = () => {
 
 				<div className="flex justify-start">
 					{" "}
-					<div className="text-4xl text-left p-4"> Response</div>
+					<div className="text-4xl text-left p-4">Response</div>
 				</div>
 				<div className="flex justify-start flex-col gap-4">
 					{" "}
@@ -476,16 +496,18 @@ const Home = () => {
 						{" "}
 						Sections Referred
 					</div>
-					<div className="gap-2 my-3">
-						{responseSections.length > 0
-							? responseSections.map((thing) => {
-									return (
-										<div className="mx-4 badge badge-primary p-4 text-2xl">
-											{thing}
-										</div>
-									);
-							  })
-							: null}
+					<div className="gap-2 mx-4">
+						{responseSections.length > 0 ? (
+							responseSections.map((thing) => {
+								return (
+									<div className="mx-4 badge badge-primary p-4 text-2xl">
+										{thing}
+									</div>
+								);
+							})
+						) : buttonClicked ? (
+							<span className="loading loading-infinity loading-lg"></span>
+						) : null}
 					</div>
 					<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
 						{" "}
@@ -496,32 +518,43 @@ const Home = () => {
 							responseAnswer.map((thing) => {
 								return <div>{thing}</div>;
 							})
-						) : (
-							<progress className="progress w-56"></progress>
-						)}
+						) : buttonClicked ? (
+							<span className="loading loading-infinity loading-lg"></span>
+						) : null}
 					</div>
 					<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
 						{" "}
 						References
 					</div>
 					<div className="text-2xl mx-4">
-						{responseReferences ? (
+						{responseReferences.length > 0 ? (
 							responseReferences
-						) : (
-							<progress className="progress w-56"></progress>
-						)}
+						) : buttonClicked ? (
+							<span className="loading loading-infinity loading-lg"></span>
+						) : null}
+					</div>
+					<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
+						{" "}
+						Summary
+					</div>
+					<div className="text-2xl mx-4">
+						{responseSummary ? (
+							responseSummary
+						) : buttonClicked ? (
+							<span className="loading loading-infinity loading-lg"></span>
+						) : null}
 					</div>
 				</div>
 			</div>
-			<div id="app_dev_projects" className="hidden p-8 bg-base-300 m-8">
+			<div id="app_dev_projects" className="p-8 bg-base-300 m-8">
 				<div className="flex justify-start">
 					{" "}
 					<div className="text-4xl text-left p-4"> Question </div>
 				</div>
 
 				{/* <ProjectSection
-					ordered_projects={ordered_projects_app}
-					svg_name={"app"}
+					ordered_projects={ordered_projects_major}
+					svg_name={"majorssvg"}
 				/> */}
 				<div className="flex flex-col justify-between w-full items-start">
 					<span className=" text-3xl m-4 label-text text-left w-2/3">
@@ -542,6 +575,7 @@ const Home = () => {
 					className="btn-lg btn-secondary rounded-xl m-4 text-2xl"
 					onClick={() => {
 						getResponses();
+						setButtonClicked(true);
 					}}
 				>
 					{" "}
@@ -550,7 +584,7 @@ const Home = () => {
 
 				<div className="flex justify-start">
 					{" "}
-					<div className="text-4xl text-left p-4"> Response</div>
+					<div className="text-4xl text-left p-4">Response</div>
 				</div>
 				<div className="flex justify-start flex-col gap-4">
 					{" "}
@@ -558,16 +592,18 @@ const Home = () => {
 						{" "}
 						Sections Referred
 					</div>
-					<div className="gap-2 my-3">
-						{responseSections.length > 0
-							? responseSections.map((thing) => {
-									return (
-										<div className="mx-4 badge badge-primary p-4 text-2xl">
-											{thing}
-										</div>
-									);
-							  })
-							: null}
+					<div className="gap-2 mx-4">
+						{responseSections.length > 0 ? (
+							responseSections.map((thing) => {
+								return (
+									<div className="mx-4 badge badge-primary p-4 text-2xl">
+										{thing}
+									</div>
+								);
+							})
+						) : buttonClicked ? (
+							<span className="loading loading-infinity loading-lg"></span>
+						) : null}
 					</div>
 					<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
 						{" "}
@@ -578,32 +614,43 @@ const Home = () => {
 							responseAnswer.map((thing) => {
 								return <div>{thing}</div>;
 							})
-						) : (
-							<progress className="progress w-56"></progress>
-						)}
+						) : buttonClicked ? (
+							<span className="loading loading-infinity loading-lg"></span>
+						) : null}
 					</div>
 					<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
 						{" "}
 						References
 					</div>
 					<div className="text-2xl mx-4">
-						{responseReferences ? (
+						{responseReferences.length > 0 ? (
 							responseReferences
-						) : (
-							<progress className="progress w-56"></progress>
-						)}
+						) : buttonClicked ? (
+							<span className="loading loading-infinity loading-lg"></span>
+						) : null}
+					</div>
+					<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
+						{" "}
+						Summary
+					</div>
+					<div className="text-2xl mx-4">
+						{responseSummary ? (
+							responseSummary
+						) : buttonClicked ? (
+							<span className="loading loading-infinity loading-lg"></span>
+						) : null}
 					</div>
 				</div>
 			</div>
-			<div id="web_dev_projects" className="hidden p-8 bg-base-300 m-8">
+			<div id="web_dev_projects" className="p-8 bg-base-300 m-8">
 				<div className="flex justify-start">
 					{" "}
 					<div className="text-4xl text-left p-4"> Question </div>
 				</div>
 
 				{/* <ProjectSection
-					ordered_projects={ordered_projects_web}
-					svg_name={"devsvg"}
+					ordered_projects={ordered_projects_major}
+					svg_name={"majorssvg"}
 				/> */}
 				<div className="flex flex-col justify-between w-full items-start">
 					<span className=" text-3xl m-4 label-text text-left w-2/3">
@@ -624,6 +671,7 @@ const Home = () => {
 					className="btn-lg btn-secondary rounded-xl m-4 text-2xl"
 					onClick={() => {
 						getResponses();
+						setButtonClicked(true);
 					}}
 				>
 					{" "}
@@ -632,7 +680,7 @@ const Home = () => {
 
 				<div className="flex justify-start">
 					{" "}
-					<div className="text-4xl text-left p-4"> Response</div>
+					<div className="text-4xl text-left p-4">Response</div>
 				</div>
 				<div className="flex justify-start flex-col gap-4">
 					{" "}
@@ -640,16 +688,18 @@ const Home = () => {
 						{" "}
 						Sections Referred
 					</div>
-					<div className="gap-2 my-3">
-						{responseSections.length > 0
-							? responseSections.map((thing) => {
-									return (
-										<div className="mx-4 badge badge-primary p-4 text-2xl">
-											{thing}
-										</div>
-									);
-							  })
-							: null}
+					<div className="gap-2 mx-4">
+						{responseSections.length > 0 ? (
+							responseSections.map((thing) => {
+								return (
+									<div className="mx-4 badge badge-primary p-4 text-2xl">
+										{thing}
+									</div>
+								);
+							})
+						) : buttonClicked ? (
+							<span className="loading loading-infinity loading-lg"></span>
+						) : null}
 					</div>
 					<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
 						{" "}
@@ -660,35 +710,43 @@ const Home = () => {
 							responseAnswer.map((thing) => {
 								return <div>{thing}</div>;
 							})
-						) : (
-							<progress className="progress w-56"></progress>
-						)}
+						) : buttonClicked ? (
+							<span className="loading loading-infinity loading-lg"></span>
+						) : null}
 					</div>
 					<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
 						{" "}
 						References
 					</div>
 					<div className="text-2xl mx-4">
-						{responseAnswer ? (
-							responseAnswer.map((thing) => {
-								return <div>{thing}</div>;
-							})
-						) : (
-							<progress className="progress w-56"></progress>
-						)}{" "}
-						links
+						{responseReferences.length > 0 ? (
+							responseReferences
+						) : buttonClicked ? (
+							<span className="loading loading-infinity loading-lg"></span>
+						) : null}
+					</div>
+					<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
+						{" "}
+						Summary
+					</div>
+					<div className="text-2xl mx-4">
+						{responseSummary ? (
+							responseSummary
+						) : buttonClicked ? (
+							<span className="loading loading-infinity loading-lg"></span>
+						) : null}
 					</div>
 				</div>
 			</div>
-			<div id="game_dev_projects" className="hidden p-8 bg-base-300 m-8">
+			<div id="game_dev_projects" className="p-8 bg-base-300 m-8">
 				<div className="flex justify-start">
 					{" "}
 					<div className="text-4xl text-left p-4"> Question </div>
 				</div>
 
 				{/* <ProjectSection
-					ordered_projects={ordered_projects_game}
-					svg_name={"devsvg"}
+					ordered_projects={ordered_projects_major}
+					svg_name={"majorssvg"}
 				/> */}
 				<div className="flex flex-col justify-between w-full items-start">
 					<span className=" text-3xl m-4 label-text text-left w-2/3">
@@ -709,6 +767,7 @@ const Home = () => {
 					className="btn-lg btn-secondary rounded-xl m-4 text-2xl"
 					onClick={() => {
 						getResponses();
+						setButtonClicked(true);
 					}}
 				>
 					{" "}
@@ -717,25 +776,26 @@ const Home = () => {
 
 				<div className="flex justify-start">
 					{" "}
-					<div className="text-4xl text-left p-4"> Response</div>
+					<div className="text-4xl text-left p-4">Response</div>
 				</div>
-
 				<div className="flex justify-start flex-col gap-4">
 					{" "}
 					<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
 						{" "}
 						Sections Referred
 					</div>
-					<div className="gap-2 my-3">
-						{responseSections.length > 0
-							? responseSections.map((thing) => {
-									return (
-										<div className="mx-4 badge badge-primary p-4 text-2xl">
-											{thing}
-										</div>
-									);
-							  })
-							: null}
+					<div className="gap-2 mx-4">
+						{responseSections.length > 0 ? (
+							responseSections.map((thing) => {
+								return (
+									<div className="mx-4 badge badge-primary p-4 text-2xl">
+										{thing}
+									</div>
+								);
+							})
+						) : buttonClicked ? (
+							<span className="loading loading-infinity loading-lg"></span>
+						) : null}
 					</div>
 					<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
 						{" "}
@@ -746,20 +806,31 @@ const Home = () => {
 							responseAnswer.map((thing) => {
 								return <div>{thing}</div>;
 							})
-						) : (
-							<progress className="progress w-56"></progress>
-						)}
+						) : buttonClicked ? (
+							<span className="loading loading-infinity loading-lg"></span>
+						) : null}
 					</div>
 					<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
 						{" "}
 						References
 					</div>
 					<div className="text-2xl mx-4">
-						{responseReferences ? (
+						{responseReferences.length > 0 ? (
 							responseReferences
-						) : (
-							<progress className="progress w-56"></progress>
-						)}
+						) : buttonClicked ? (
+							<span className="loading loading-infinity loading-lg"></span>
+						) : null}
+					</div>
+					<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
+						{" "}
+						Summary
+					</div>
+					<div className="text-2xl mx-4">
+						{responseSummary ? (
+							responseSummary
+						) : buttonClicked ? (
+							<span className="loading loading-infinity loading-lg"></span>
+						) : null}
 					</div>
 				</div>
 			</div>
