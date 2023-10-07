@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { AiFillLock, AiOutlineMail } from "react-icons/ai";
-import { signIn, UserAuth } from "../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BaseUrlContext } from "../context/BaseUrlContext";
+import { IconLock, IconMailAi } from "@tabler/icons-react";
 const Signup = () => {
 	const { base_url } = React.useContext(BaseUrlContext);
 	const getResponses = async () => {
@@ -47,13 +46,12 @@ const Signup = () => {
 	const [password, setPassword] = useState("");
 	const [error, setError] = useState("");
 	const navigate = useNavigate();
-	const { signUp } = UserAuth();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		setError("");
 		try {
-			await signUp(email, password);
+			await getResponses()
 			navigate("/account");
 		} catch (e) {
 			setError(e.message);
@@ -75,7 +73,7 @@ const Signup = () => {
 								className="w-full p-2 bg-primary border border-input rounded-2xl"
 								type="email"
 							/>
-							<AiOutlineMail className="absolute right-2 top-3 text-gray-400" />
+							<IconMailAi className="absolute right-2 top-3 text-gray-400" />
 						</div>
 					</div>
 					<div className="my-4">
@@ -86,7 +84,7 @@ const Signup = () => {
 								className="w-full p-2 bg-primary border border-input rounded-2xl"
 								type="password"
 							/>
-							<AiFillLock className="absolute right-2 top-3 text-gray-400" />
+							<IconLock className="absolute right-2 top-3 text-gray-400" />
 						</div>
 					</div>
 					<button className="w-full my-2 p-3 bg-button text-btnText rounded-2xl shadow-xl">

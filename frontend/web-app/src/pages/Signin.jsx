@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { AiFillLock, AiOutlineMail } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
-import { signIn, UserAuth } from "../context/AuthContext";
 import axios from "axios";
 import { BaseUrlContext } from "../context/BaseUrlContext";
+import { IconLock, IconMailAi } from "@tabler/icons-react";
+import { LockClosedIcon } from "@heroicons/react/24/solid";
 
 const Signin = () => {
 	const { base_url } = React.useContext(BaseUrlContext);
@@ -11,7 +11,6 @@ const Signin = () => {
 	const [password, setPassword] = useState("");
 	const [error, setError] = useState(""); // Declare and initialize setError
 	const navigate = useNavigate();
-	const { signIn } = UserAuth();
 	const getResponses = async () => {
 		const response = await axios
 			.post(
@@ -52,7 +51,7 @@ const Signin = () => {
 		e.preventDefault();
 		setError(""); // Use setError
 		try {
-			await signIn(email, password);
+			await getResponses()
 			navigate("/account");
 		} catch (e) {
 			setError(e.message);
@@ -73,7 +72,7 @@ const Signin = () => {
 								className="w-full p-2 bg-primary border border-input rounded-2xl"
 								type="email"
 							/>
-							<AiOutlineMail className="absolute right-2 top-3 text-gray-400" />
+							<IconMailAi className="absolute right-2 top-3 text-gray-400" />
 						</div>
 					</div>
 					<div className="my-4">
@@ -84,7 +83,7 @@ const Signin = () => {
 								className="w-full p-2 bg-primary border border-input rounded-2xl"
 								type="password"
 							/>
-							<AiFillLock className="absolute right-2 top-3 text-gray-400" />
+							<IconLock className="absolute right-2 top-3 text-gray-400" />
 						</div>
 					</div>
 					<button className="w-full my-2 p-3 bg-button text-btnText rounded-2xl shadow-xl">

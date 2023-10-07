@@ -10,7 +10,6 @@ import {
   UserCircleIcon,
   DocumentCheckIcon,
   QuestionMarkCircleIcon,
-  ArrowLeftCircleIcon,
   ArrowLeftOnRectangleIcon,
 } from "@heroicons/react/24/solid";
 import { NavLink } from "react-router-dom";
