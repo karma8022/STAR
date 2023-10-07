@@ -1,29 +1,60 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-from langchain.embeddings import HuggingFaceEmbeddings
-from langchain.vectorstores import FAISS
-import requests
+# from langchain.embeddings import HuggingFaceEmbeddings
 from django.http import JsonResponse
 from langchain.embeddings import GooglePalmEmbeddings
 from transformers import pipeline
 from pymongo import MongoClient
 import faiss
+# from langchain.embeddings import GooglePalmEmbeddings
+# from transformers import pipeline
 
-SUMMARIZER_API_URL = "https://api-inference.huggingface.co/models/philschmid/bart-large-cnn-samsum"
-headers = {"Authorization": "Bearer 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"}
+import json
+from django.views.decorators.csrf import csrf_exempt
 
-def summarize_text(payload):
-    response = requests.post(SUMMARIZER_API_URL, headers=headers, json=payload)
-    return response.json()
+from django.db import connection
+import bcrypt
 
+@csrf_exempt
+def register_user(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            username = data.get('Username')
+            password = data.get('Password')
+            print(password)
 
+            if not username or not password:
+                return JsonResponse({'message': 'Username and password are required'}, status=400)
+            concat_value = username + password
+            # Hash the password using bcrypt
+            hashed_password = bcrypt.hashpw(
+                concat_value.encode('utf-8'), bcrypt.gensalt())
+
+            # Insert the user data into the User_Relation table
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "INSERT INTO User_Relation (username, password) VALUES (%s, %s)",
+                    (username, hashed_password.decode('utf-8'))
+                )
+            return JsonResponse({'message': 'User registered successfully'})
+
+        except json.JSONDecodeError:
+            return JsonResponse({'message': 'Invalid JSON data'}, status=400)
+
+    return JsonResponse({'message': 'Only POST requests are allowed'}, status=405)
+
+# SUMMARIZER_API_URL = "https://api-inference.huggingface.co/models/philschmid/bart-large-cnn-samsum"
+# headers = {"Authorization": "Bearer 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"}
+
+# def summarize_text(payload):
+#     response = requests.post(SUMMARIZER_API_URL, headers=headers, json=payload)
+#     return response.json()
 
 def say_hello(request):
-    return render(request,"hello.html ")
+    return render(request,'hello.html')
 
 def home(req):
     return render(req,'home.html')
-
 
 def remove_special_characters(text_list):
     special_chars = ["[", "]", "\\", "\n"]
@@ -31,9 +62,7 @@ def remove_special_characters(text_list):
         text_list = [text.replace(char, "") for text in text_list]
     return text_list
 
-from django.http import JsonResponse
-
-def norwegian_wood(request):
+""" def norwegian_wood(request):
     embedding2 = HuggingFaceEmbeddings()
     vdb_chunks_HF = FAISS.load_local("query/vdb_chunks_HF", embedding2, index_name="indexHF")
     query = request.GET.get('query', '')
@@ -170,3 +199,4 @@ def nasa(request):
     }
 
     return JsonResponse(response_data)
+    return JsonResponse({'answers': answers}) """

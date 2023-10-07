@@ -7,3 +7,10 @@ requests==2.31.0
 sqlparse==0.4.4
 tzdata==2023.3
 urllib3==2.0.6
+langchain
+transformers
+django-cors-headers
+click==8.1.6
+h11==0.14.0
+typing_extensions==4.7.1
+uvicorn==0.23.2
