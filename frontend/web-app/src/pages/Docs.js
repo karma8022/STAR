@@ -26,46 +26,37 @@ const Contact = () => {
 					1. NASA Standards
 				</a>
 				<a
-					href="https://standards.nasa.gov/all-standards"
+					href="https://www.spaceappschallenge.org/2023/challenges/star-revolutionizing-technical-standards-with-ai/?tab=resources"
 					className="underline m-4"
 				>
-					2. NASA Standards
+					2. NASA Standard 5018, Strength Design and Verification
+					Criteria for Glass, Ceramics, and Windows in Human Space
+					Flight Applications
 				</a>
 				<a
-					href="https://standards.nasa.gov/all-standards"
+					href="https://www.nasa.gov/wp-content/uploads/2022/05/tb_summary_091922.pdf"
 					className="underline m-4"
 				>
-					3. NASA Standards
+					3. NASA Engineering and Safety Center (NESC) Technical
+					Bulletins
+				</a>
+				<a href="https://llis.nasa.gov/" className="underline m-4">
+					4. NASA Lessons Learned
 				</a>
 				<a
-					href="https://standards.nasa.gov/all-standards"
+					href="https://www.spaceappschallenge.org/2023/challenges/star-revolutionizing-technical-standards-with-ai/?tab=resources"
 					className="underline m-4"
 				>
-					3. NASA Standards
+					3. NASA Technical Reports Server (NTRS)
 				</a>
 				<a
-					href="https://standards.nasa.gov/all-standards"
+					href="https://www.nasa.gov/general/knowledge-management-km-resources/"
 					className="underline m-4"
 				>
-					3. NASA Standards
+					3. NASA Knowledge Management
 				</a>
-				<a
-					href="https://standards.nasa.gov/all-standards"
-					className="underline m-4"
-				>
-					3. NASA Standards
-				</a>
-				<a
-					href="https://standards.nasa.gov/all-standards"
-					className="underline m-4"
-				>
-					3. NASA Standards
-				</a>
-				<a
-					href="https://standards.nasa.gov/all-standards"
-					className="underline m-4"
-				>
-					3. NASA Standards
+				<a href="https://sti.nasa.gov/" className="underline m-4">
+					3. NASA Scientific and Technical Information (STI) Program
 				</a>
 			</div>
 		</div>
