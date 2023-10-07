@@ -56,6 +56,41 @@ def register_user(request):
 
     return JsonResponse({'message': 'Only POST requests are allowed'}, status=405)
 
+
+@csrf_exempt
+def login_user(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            username = data.get('Username')
+            password = data.get('Password')
+
+            if not username or not password:
+                return JsonResponse({'message': 'Username and password are required'}, status=400)
+
+            # Retrieve user data from the database based on the username
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT * FROM User_Relation WHERE username = %s", [username])
+                user_data = cursor.fetchone()
+
+            if user_data:
+                # Check if the provided password matches the hashed password in the database
+                # Assuming password is in the third column
+                stored_password = user_data[2]
+                if bcrypt.checkpw((username + password).encode('utf-8'), stored_password.encode('utf-8')):
+                    # Authentication successful
+                    return JsonResponse({'message': 'Login successful'})
+                else:
+                    return JsonResponse({'message': 'Invalid username or password'}, status=401)
+            else:
+                return JsonResponse({'message': 'User not found'}, status=404)
+
+        except json.JSONDecodeError:
+            return JsonResponse({'message': 'Invalid JSON data'}, status=400)
+
+    return JsonResponse({'message': 'Only POST requests are allowed'}, status=405)
+
 # SUMMARIZER_API_URL = "https://api-inference.huggingface.co/models/philschmid/bart-large-cnn-samsum"
 # headers = {"Authorization": "Bearer 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"}
 
