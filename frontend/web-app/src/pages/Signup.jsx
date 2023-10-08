@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BaseUrlContext } from "../context/BaseUrlContext";
 import { IconLock, IconMailAi, IconUserBolt } from "@tabler/icons-react";
-import { UserEmailContext } from "../context/UserAuth";
+import { UserEmailContext } from "../context/UserEmailContext"
 const Signup = () => {
 	const { base_url } = React.useContext(BaseUrlContext);
-	const { userEmail, setUserEmail } = React.useContext(UserEmailContext);
+	const userEmail = useContext(UserEmailContext).userEmail;
+	const setUserEmail = useContext(UserEmailContext).setUserEmail;
 	const [currentUserEmail, setcurrentUserEmail] = useState("");
 	const [currentUserPassword, setcurrentUserPassword] = useState("");
 	const [currentUser, setcurrentUser] = useState("");
@@ -39,13 +40,7 @@ const Signup = () => {
 				};
 				return response;
 			});
-		if (response.data.message === "simulation") {
-			alert("example. ");
-		} else if (response.data.message === "success") {
-			// setresponseAnswer(response.data.answer);
-			// setresponseSections(response.data.sections);
-			// setResponseReferences(response.data.references);
-		}
+
 	};
 
 	const [error, setError] = useState("");
@@ -56,7 +51,7 @@ const Signup = () => {
 		setError("");
 		try {
 			await getResponses();
-			navigate("/");
+			navigate("/home");
 		} catch (e) {
 			setError(e.message);
 			console.log(e.message);

@@ -3,7 +3,7 @@ import { CheckBadgeIcon } from "@heroicons/react/24/solid";
 import React, { useState } from "react";
 import { BaseUrlContext } from "../context/BaseUrlContext";
 import axios from "axios";
-import UserEmailContext from "../context/UserAuth";
+import UserEmailContext from "../context/UserEmailContext";
 
 const Home = () => {
 	const [userQuery, setuserQuery] = useState("");
