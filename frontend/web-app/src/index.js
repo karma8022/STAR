@@ -9,13 +9,13 @@ import { UserEmailProvider } from "./context/UserEmailContext";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
-	<React.StrictMode>
-		<BrowserRouter>
-			<BaseUrlProvider>
-				<UserEmailProvider>
-					<App />
-				</UserEmailProvider>
-			</BaseUrlProvider>
-		</BrowserRouter>
-	</React.StrictMode>
+  <React.StrictMode>
+    <BrowserRouter>
+      <BaseUrlProvider>
+        <UserEmailProvider>
+          <App />
+        </UserEmailProvider>
+      </BaseUrlProvider>
+    </BrowserRouter>
+  </React.StrictMode>
 );
