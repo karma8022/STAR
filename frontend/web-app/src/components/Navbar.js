@@ -19,7 +19,7 @@ export function Navbar() {
   return (
     <div className="pr-4 mr-4 z-50">
       <div
-        className={`navbar bg-secondary rounded-xl text-secondary-content flex-row-reverse justify-between m-4 
+        className={`navbar bg-gray-400 rounded-xl text-secondary-content flex-row-reverse justify-between m-4 
 			md:flex-row`}
       >
         {/* name */}
