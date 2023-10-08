@@ -17,7 +17,7 @@ const Signup = () => {
 				{
 					Username: currentUser,
 					Password: currentUserPassword,
-					Email: currentUserEmail,
+					Email: userEmail,
 				},
 				{
 					headers: {
