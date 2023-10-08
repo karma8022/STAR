@@ -1,3 +1,4 @@
+
 from django.http import JsonResponse
 from django.shortcuts import render
 from langchain.embeddings import HuggingFaceEmbeddings
@@ -20,6 +21,7 @@ def is_valid_email(email):
     email_pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
     return re.match(email_pattern, email)
 
+
 @csrf_exempt
 def register_user(request):
     if request.method == 'POST':
@@ -31,7 +33,7 @@ def register_user(request):
             email = data.get('Email')
             queries_data = ''
             print(password)
-            
+
             # Check if email is valid
             if not is_valid_email(email):
                 return JsonResponse({'message': 'Invalid email format'}, status=400)
@@ -47,7 +49,8 @@ def register_user(request):
             with connection.cursor() as cursor:
                 cursor.execute(
                     "INSERT INTO User_Relation (username, password, email, queries_data) VALUES (%s, %s, %s, %s)",
-                    (username, hashed_password.decode('utf-8'), email, queries_data)
+                    (username, hashed_password.decode(
+                        'utf-8'), email, queries_data)
                 )
             return JsonResponse({'message': 'User registered successfully'})
 
@@ -91,17 +94,21 @@ def login_user(request):
 
     return JsonResponse({'message': 'Only POST requests are allowed'}, status=405)
 
+
 def say_hello(request):
-    return render(request,'hello.html')
+    return render(request, 'hello.html')
+
 
 def home(req):
-    return render(req,'home.html')
+    return render(req, 'home.html')
+
 
 def remove_special_characters(text_list):
     special_chars = ["[", "]", "\\", "\n"]
     for char in special_chars:
         text_list = [text.replace(char, "") for text in text_list]
     return text_list
+
 
 def nasa(request):
     try:
@@ -175,6 +182,7 @@ def bulletin(request):
 
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
+
 
 def standards(request):
     try:
@@ -254,7 +262,7 @@ def spacetech(request):
 
 def queries_request(request):
     if request.method == 'GET':
-        try :
+        try:
 
             data = json.loads(request.body)
             username = data.get('Username')
@@ -279,6 +287,6 @@ def queries_request(request):
                 return JsonResponse({'message': 'User not found'}, status=404)
 
         except json.JSONDecodeError:
-            return JsonResponse({'message': 'Invalid JSON data'}, status=400)    
+            return JsonResponse({'message': 'Invalid JSON data'}, status=400)
 
-    return JsonResponse({'message': 'Only GET requests are allowed'}, status=405)
+    return JsonResponse({'message': 'Only GET requests are allowed'},status=405)

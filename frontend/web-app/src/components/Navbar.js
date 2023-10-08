@@ -36,7 +36,7 @@ export function Navbar() {
         <div className="hidden md:flex">
           <ul className="menu menu-horizontal px-1">
             <li className="text-base md:text-lg">
-              <NavLink to={"/"} id="contact_element">
+              <NavLink to={"/home"} id="contact_element">
                 <QuestionMarkCircleIcon className="w-6 h-6" />
                 Query
               </NavLink>
@@ -58,38 +58,6 @@ export function Navbar() {
                 <ArrowLeftOnRectangleIcon className="w-6 h-6" />
                 Logout
               </NavLink>
-            </li>
-          </ul>
-        </div>
-        {/* hamburger */}
-        <div className="md:hidden">
-          <ul className="menu menu-horizontal px-1">
-            <li>
-              <details>
-                <summary className="text-base md:text-lg">
-                  <Bars3Icon className="w-6 h-6" />
-                </summary>
-                <ul className="p-1 bg-base-100 text-base-content z-50">
-                  <li className="text-base md:text-lg">
-                    <NavLink to={"/projects"} id="contact_element">
-                      <BookmarkIcon className="w-6 h-6" />
-                      Projects
-                    </NavLink>
-                  </li>
-                  <li className="text-base md:text-lg">
-                    <NavLink to={"/about"} id="contact_element">
-                      <InformationCircleIcon className="w-6 h-6" />
-                      About
-                    </NavLink>
-                  </li>
-                  <li className="text-base md:text-lg">
-                    <NavLink to={"/contact"} id="contact_element">
-                      <DevicePhoneMobileIcon className="w-6 h-6" />
-                      Contact
-                    </NavLink>
-                  </li>
-                </ul>
-              </details>
             </li>
           </ul>
         </div>
