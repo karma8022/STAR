@@ -3,31 +3,65 @@ import { CheckBadgeIcon } from "@heroicons/react/24/solid";
 import React, { useState } from "react";
 import { BaseUrlContext } from "../context/BaseUrlContext";
 import axios from "axios";
+import UserEmailContext from "../context/UserAuth";
 
 const Home = () => {
   const [userQuery, setuserQuery] = useState("");
-  const [responseAnswer, setresponseAnswer] = useState("");
-  const [buttonClicked, setButtonClicked] = useState(false);
-  const [responseSections, setresponseSections] = useState([]);
-  const [responseReferences, setResponseReferences] = useState([]);
-  const [responseSummary, setresponseSummary] = useState("");
+	const [responseAnswer, setresponseAnswer] = useState("");
+	const [buttonClicked, setButtonClicked] = useState(false);
+	const [responseSections, setresponseSections] = useState([]);
+	const [responseReferences, setResponseReferences] = useState("");
+	const [responseSummary, setresponseSummary] = useState("");
 
-  const base_url = React.useContext(BaseUrlContext).baseUrl;
-  const getResponses = async () => {
-    const params = {
-      query: userQuery,
-    };
+	// const [userName] = React.useContext(UserEmailContext).userEmail;
+	const base_url = React.useContext(BaseUrlContext).baseUrl;
+	const getResponses = async () => {
+		const params = {
+			query: userQuery,
+		};
 
-    axios
-      .get(`${base_url}/query/nasa/`, { params })
-      .then((response) => {
-        console.log(response.data);
-        setresponseAnswer(response.data.answers);
-        setresponseSummary(response.data.summary);
-      })
-      .catch((error) => {
-        console.error("Error:", error.message);
-      });
+		axios
+			.get(`${base_url}/query/nasa/`, { params })
+			.then((response) => {
+				console.log(response.data);
+				setresponseAnswer(response.data.answers);
+				setresponseSections(response.data.sections);
+				setResponseReferences(response.data.references);
+			})
+			.catch((error) => {
+				console.error("Error:", error.message);
+			});
+
+		// 	const response = await axios
+		// 		.get(
+		// 			`${base_url}/query/nasa/`,
+		// 			{},
+		// 			{
+		// 				query: userQuery,
+		// 			}
+		// 		)
+		// 		.then((response) => {
+		// 			return response;
+		// 		})
+		// 		.catch((error) => {
+		// 			console.error(error);
+		// 			alert("server not running! a simulated response is being sent");
+		// 			const response = {
+		// 				data: {
+		// 					message: "simulation",
+		// 				},
+		// 			};
+		// 			return response;
+		// 		});
+		// 	if (response.data.message === "simulation") {
+		// 		alert("example. ");
+		// 	} else if (response.data.message === "success") {
+		// 		setresponseAnswer(response.data.answer);
+		// 		setresponseSections(response.data.sections);
+		// 		setResponseReferences(response.data.references);
+		// 	}
+	};
+
 
     // 	const response = await axios
     // 		.get(
@@ -141,7 +175,7 @@ const Home = () => {
               }}
             >
               {" "}
-              Topic 1
+              NASA 5018
             </div>
             <div
               className="text-xl tab"
@@ -191,7 +225,7 @@ const Home = () => {
                   .classList.remove("hidden");
               }}
             >
-              Topic 2
+              NASA Bulletin
             </div>
             <div
               className="text-xl tab"
@@ -241,7 +275,7 @@ const Home = () => {
                   .classList.remove("hidden");
               }}
             >
-              Topic 3
+              NASA Standard
             </div>
             <div
               className="text-xl tab"
@@ -291,57 +325,7 @@ const Home = () => {
                   .classList.remove("hidden");
               }}
             >
-              Topic 4
-            </div>
-            <div
-              className="text-xl tab"
-              onClick={(e) => {
-                setButtonClicked(false);
-                // make this tab active
-                document
-                  .getElementById("thetabs")
-                  .children[4].classList.add("tab-active");
-                document
-                  .getElementById("thetabs")
-                  .children[3].classList.remove("tab-active");
-                document
-                  .getElementById("thetabs")
-                  .children[1].classList.remove("tab-active");
-                document
-                  .getElementById("thetabs")
-                  .children[0].classList.remove("tab-active");
-                document
-                  .getElementById("thetabs")
-                  .children[2].classList.remove("tab-active");
-
-                // scroll to the element
-                const current_tab_section =
-                  document.getElementById("game_dev_projects");
-                current_tab_section.scrollIntoView({
-                  behavior: "smooth",
-                });
-
-                // hide the others
-                document
-                  .getElementById("mlds_projects")
-                  .classList.add("hidden");
-                document
-                  .getElementById("major_projects")
-                  .classList.add("hidden");
-                document
-                  .getElementById("app_dev_projects")
-                  .classList.add("hidden");
-                document
-                  .getElementById("web_dev_projects")
-                  .classList.add("hidden");
-
-                // show the current one
-                document
-                  .getElementById("game_dev_projects")
-                  .classList.remove("hidden");
-              }}
-            >
-              Topic 5
+              NASA STI
             </div>
           </div>
         </div>
@@ -357,7 +341,7 @@ const Home = () => {
         {/* sections */}
         <div
           id="major_projects"
-          className="p-8 bg-base-300 m-8 background-with-opacity"
+          className="p-8 bg-base-300 m-8 background-with-opacity rounded-xl"
         >
           <div className="flex justify-start">
             {" "}
@@ -369,7 +353,7 @@ const Home = () => {
 					svg_name={"majorssvg"}
 				/> */}
           <div className="flex flex-col justify-between w-full items-start ">
-            <span className=" text-3xl m-4 label-text text-left w-2/3">
+            <span className=" text-2xl m-4 label-text text-left w-2/3">
               What is your Query?
             </span>
             <input
@@ -379,7 +363,7 @@ const Home = () => {
               onChange={(e) => {
                 setuserQuery(e.target.value);
               }}
-              className="input input-bordered input-lg w-full max-w-xs m-2"
+              className="input input-bordered input-lg w-full max-w-md m-2"
             />
           </div>
 
@@ -394,10 +378,7 @@ const Home = () => {
             Ask!
           </button>
 
-          <div className="flex justify-start">
-            {" "}
-            <div className="text-4xl text-left p-4">Response</div>
-          </div>
+          <div className="flex justify-start"> </div>
           <div className="flex justify-start flex-col gap-4">
             {" "}
             <div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
@@ -440,10 +421,6 @@ const Home = () => {
               ) : buttonClicked ? (
                 <span className="loading loading-infinity loading-lg"></span>
               ) : null}
-            </div>
-            <div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
-              {" "}
-              Summary
             </div>
             <div className="text-2xl mx-4">
               {responseSummary ? (
@@ -467,399 +444,399 @@ const Home = () => {
 					ordered_projects={ordered_projects_major}
 					svg_name={"majorssvg"}
 				/> */}
-          <div className="flex flex-col justify-between w-full items-start">
-            <span className=" text-3xl m-4 label-text text-left w-2/3">
-              What is your Query?
-            </span>
-            <input
-              type="text"
-              placeholder="Enter Identifier"
-              value={userQuery}
-              onChange={(e) => {
-                setuserQuery(e.target.value);
-              }}
-              className="input input-bordered input-lg w-full max-w-xs m-2"
-            />
-          </div>
+					<div className="flex flex-col justify-between w-full items-start">
+						<span className=" text-3xl m-4 label-text text-left w-2/3">
+							What is your Query?
+						</span>
+						<input
+							type="text"
+							placeholder="Enter Identifier"
+							value={userQuery}
+							onChange={(e) => {
+								setuserQuery(e.target.value);
+							}}
+							className="input input-bordered input-lg w-full max-w-xs m-2"
+						/>
+					</div>
 
-          <button
-            className="btn-lg btn-secondary rounded-xl m-4 text-2xl"
-            onClick={() => {
-              getResponses();
-              setButtonClicked(true);
-            }}
-          >
-            {" "}
-            Ask!
-          </button>
+					<button
+						className="btn-lg btn-secondary rounded-xl m-4 text-2xl"
+						onClick={() => {
+							getResponses();
+							setButtonClicked(true);
+						}}
+					>
+						{" "}
+						Ask!
+					</button>
 
-          <div className="flex justify-start">
-            {" "}
-            <div className="text-4xl text-left p-4">Response</div>
-          </div>
-          <div className="flex justify-start flex-col gap-4">
-            {" "}
-            <div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
-              {" "}
-              Sections Referred
-            </div>
-            <div className="gap-2 mx-4">
-              {responseSections.length > 0 ? (
-                responseSections.map((thing) => {
-                  return (
-                    <div className="mx-4 badge badge-primary p-4 text-2xl">
-                      {thing}
-                    </div>
-                  );
-                })
-              ) : buttonClicked ? (
-                <span className="loading loading-infinity loading-lg"></span>
-              ) : null}
-            </div>
-            <div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
-              {" "}
-              Response
-            </div>
-            <div className="text-2xl mx-4">
-              {responseAnswer ? (
-                responseAnswer.map((thing) => {
-                  return <div>{thing}</div>;
-                })
-              ) : buttonClicked ? (
-                <span className="loading loading-infinity loading-lg"></span>
-              ) : null}
-            </div>
-            <div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
-              {" "}
-              References
-            </div>
-            <div className="text-2xl mx-4">
-              {responseReferences.length > 0 ? (
-                responseReferences
-              ) : buttonClicked ? (
-                <span className="loading loading-infinity loading-lg"></span>
-              ) : null}
-            </div>
-            <div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
-              {" "}
-              Summary
-            </div>
-            <div className="text-2xl mx-4">
-              {responseSummary ? (
-                responseSummary
-              ) : buttonClicked ? (
-                <span className="loading loading-infinity loading-lg"></span>
-              ) : null}
-            </div>
-          </div>
-        </div>
-        <div
-          id="app_dev_projects"
-          className="hidden p-8 bg-base-300 m-8 background-with-opacity"
-        >
-          <div className="flex justify-start">
-            {" "}
-            <div className="text-4xl text-left p-4"> Question </div>
-          </div>
+					<div className="flex justify-start">
+						{" "}
+						<div className="text-4xl text-left p-4">Response</div>
+					</div>
+					<div className="flex justify-start flex-col gap-4">
+						{" "}
+						<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
+							{" "}
+							Sections Referred
+						</div>
+						<div className="gap-2 mx-4">
+							{responseSections.length > 0 ? (
+								responseSections.map((thing) => {
+									return (
+										<div className="mx-4 badge badge-primary p-4 text-2xl">
+											{thing}
+										</div>
+									);
+								})
+							) : buttonClicked ? (
+								<span className="loading loading-infinity loading-lg"></span>
+							) : null}
+						</div>
+						<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
+							{" "}
+							Response
+						</div>
+						<div className="text-2xl mx-4">
+							{responseAnswer ? (
+								responseAnswer.map((thing) => {
+									return <div>{thing}</div>;
+								})
+							) : buttonClicked ? (
+								<span className="loading loading-infinity loading-lg"></span>
+							) : null}
+						</div>
+						<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
+							{" "}
+							References
+						</div>
+						<div className="text-2xl mx-4">
+							{responseReferences.length > 0 ? (
+								responseReferences
+							) : buttonClicked ? (
+								<span className="loading loading-infinity loading-lg"></span>
+							) : null}
+						</div>
+						<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
+							{" "}
+							Summary
+						</div>
+						<div className="text-2xl mx-4">
+							{responseSummary ? (
+								responseSummary
+							) : buttonClicked ? (
+								<span className="loading loading-infinity loading-lg"></span>
+							) : null}
+						</div>
+					</div>
+				</div>
+				<div
+					id="app_dev_projects"
+					className="hidden p-8 bg-base-300 m-8 background-with-opacity"
+				>
+					<div className="flex justify-start">
+						{" "}
+						<div className="text-4xl text-left p-4"> Question </div>
+					</div>
 
-          {/* <ProjectSection
+					{/* <ProjectSection
 					ordered_projects={ordered_projects_major}
 					svg_name={"majorssvg"}
 				/> */}
-          <div className="flex flex-col justify-between w-full items-start">
-            <span className=" text-3xl m-4 label-text text-left w-2/3">
-              What is your Query?
-            </span>
-            <input
-              type="text"
-              placeholder="Enter Identifier"
-              value={userQuery}
-              onChange={(e) => {
-                setuserQuery(e.target.value);
-              }}
-              className="input input-bordered input-lg w-full max-w-xs m-2"
-            />
-          </div>
+					<div className="flex flex-col justify-between w-full items-start">
+						<span className=" text-3xl m-4 label-text text-left w-2/3">
+							What is your Query?
+						</span>
+						<input
+							type="text"
+							placeholder="Enter Identifier"
+							value={userQuery}
+							onChange={(e) => {
+								setuserQuery(e.target.value);
+							}}
+							className="input input-bordered input-lg w-full max-w-xs m-2"
+						/>
+					</div>
 
-          <button
-            className="btn-lg btn-secondary rounded-xl m-4 text-2xl"
-            onClick={() => {
-              getResponses();
-              setButtonClicked(true);
-            }}
-          >
-            {" "}
-            Ask!
-          </button>
+					<button
+						className="btn-lg btn-secondary rounded-xl m-4 text-2xl"
+						onClick={() => {
+							getResponses();
+							setButtonClicked(true);
+						}}
+					>
+						{" "}
+						Ask!
+					</button>
 
-          <div className="flex justify-start">
-            {" "}
-            <div className="text-4xl text-left p-4">Response</div>
-          </div>
-          <div className="flex justify-start flex-col gap-4">
-            {" "}
-            <div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
-              {" "}
-              Sections Referred
-            </div>
-            <div className="gap-2 mx-4">
-              {responseSections.length > 0 ? (
-                responseSections.map((thing) => {
-                  return (
-                    <div className="mx-4 badge badge-primary p-4 text-2xl">
-                      {thing}
-                    </div>
-                  );
-                })
-              ) : buttonClicked ? (
-                <span className="loading loading-infinity loading-lg"></span>
-              ) : null}
-            </div>
-            <div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
-              {" "}
-              Response
-            </div>
-            <div className="text-2xl mx-4">
-              {responseAnswer ? (
-                responseAnswer.map((thing) => {
-                  return <div>{thing}</div>;
-                })
-              ) : buttonClicked ? (
-                <span className="loading loading-infinity loading-lg"></span>
-              ) : null}
-            </div>
-            <div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
-              {" "}
-              References
-            </div>
-            <div className="text-2xl mx-4">
-              {responseReferences.length > 0 ? (
-                responseReferences
-              ) : buttonClicked ? (
-                <span className="loading loading-infinity loading-lg"></span>
-              ) : null}
-            </div>
-            <div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
-              {" "}
-              Summary
-            </div>
-            <div className="text-2xl mx-4">
-              {responseSummary ? (
-                responseSummary
-              ) : buttonClicked ? (
-                <span className="loading loading-infinity loading-lg"></span>
-              ) : null}
-            </div>
-          </div>
-        </div>
-        <div
-          id="web_dev_projects"
-          className="hidden p-8 bg-base-300 m-8 background-with-opacity"
-        >
-          <div className="flex justify-start">
-            {" "}
-            <div className="text-4xl text-left p-4"> Question </div>
-          </div>
+					<div className="flex justify-start">
+						{" "}
+						<div className="text-4xl text-left p-4">Response</div>
+					</div>
+					<div className="flex justify-start flex-col gap-4">
+						{" "}
+						<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
+							{" "}
+							Sections Referred
+						</div>
+						<div className="gap-2 mx-4">
+							{responseSections.length > 0 ? (
+								responseSections.map((thing) => {
+									return (
+										<div className="mx-4 badge badge-primary p-4 text-2xl">
+											{thing}
+										</div>
+									);
+								})
+							) : buttonClicked ? (
+								<span className="loading loading-infinity loading-lg"></span>
+							) : null}
+						</div>
+						<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
+							{" "}
+							Response
+						</div>
+						<div className="text-2xl mx-4">
+							{responseAnswer ? (
+								responseAnswer.map((thing) => {
+									return <div>{thing}</div>;
+								})
+							) : buttonClicked ? (
+								<span className="loading loading-infinity loading-lg"></span>
+							) : null}
+						</div>
+						<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
+							{" "}
+							References
+						</div>
+						<div className="text-2xl mx-4">
+							{responseReferences.length > 0 ? (
+								responseReferences
+							) : buttonClicked ? (
+								<span className="loading loading-infinity loading-lg"></span>
+							) : null}
+						</div>
+						<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
+							{" "}
+							Summary
+						</div>
+						<div className="text-2xl mx-4">
+							{responseSummary ? (
+								responseSummary
+							) : buttonClicked ? (
+								<span className="loading loading-infinity loading-lg"></span>
+							) : null}
+						</div>
+					</div>
+				</div>
+				<div
+					id="web_dev_projects"
+					className="hidden p-8 bg-base-300 m-8 background-with-opacity"
+				>
+					<div className="flex justify-start">
+						{" "}
+						<div className="text-4xl text-left p-4"> Question </div>
+					</div>
 
-          {/* <ProjectSection
+					{/* <ProjectSection
 					ordered_projects={ordered_projects_major}
 					svg_name={"majorssvg"}
 				/> */}
-          <div className="flex flex-col justify-between w-full items-start">
-            <span className=" text-3xl m-4 label-text text-left w-2/3">
-              What is your Query?
-            </span>
-            <input
-              type="text"
-              placeholder="Enter Identifier"
-              value={userQuery}
-              onChange={(e) => {
-                setuserQuery(e.target.value);
-              }}
-              className="input input-bordered input-lg w-full max-w-xs m-2"
-            />
-          </div>
+					<div className="flex flex-col justify-between w-full items-start">
+						<span className=" text-3xl m-4 label-text text-left w-2/3">
+							What is your Query?
+						</span>
+						<input
+							type="text"
+							placeholder="Enter Identifier"
+							value={userQuery}
+							onChange={(e) => {
+								setuserQuery(e.target.value);
+							}}
+							className="input input-bordered input-lg w-full max-w-xs m-2"
+						/>
+					</div>
 
-          <button
-            className="btn-lg btn-secondary rounded-xl m-4 text-2xl"
-            onClick={() => {
-              getResponses();
-              setButtonClicked(true);
-            }}
-          >
-            {" "}
-            Ask!
-          </button>
+					<button
+						className="btn-lg btn-secondary rounded-xl m-4 text-2xl"
+						onClick={() => {
+							getResponses();
+							setButtonClicked(true);
+						}}
+					>
+						{" "}
+						Ask!
+					</button>
 
-          <div className="flex justify-start">
-            {" "}
-            <div className="text-4xl text-left p-4">Response</div>
-          </div>
-          <div className="flex justify-start flex-col gap-4">
-            {" "}
-            <div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
-              {" "}
-              Sections Referred
-            </div>
-            <div className="gap-2 mx-4">
-              {responseSections.length > 0 ? (
-                responseSections.map((thing) => {
-                  return (
-                    <div className="mx-4 badge badge-primary p-4 text-2xl">
-                      {thing}
-                    </div>
-                  );
-                })
-              ) : buttonClicked ? (
-                <span className="loading loading-infinity loading-lg"></span>
-              ) : null}
-            </div>
-            <div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
-              {" "}
-              Response
-            </div>
-            <div className="text-2xl mx-4">
-              {responseAnswer ? (
-                responseAnswer.map((thing) => {
-                  return <div>{thing}</div>;
-                })
-              ) : buttonClicked ? (
-                <span className="loading loading-infinity loading-lg"></span>
-              ) : null}
-            </div>
-            <div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
-              {" "}
-              References
-            </div>
-            <div className="text-2xl mx-4">
-              {responseReferences.length > 0 ? (
-                responseReferences
-              ) : buttonClicked ? (
-                <span className="loading loading-infinity loading-lg"></span>
-              ) : null}
-            </div>
-            <div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
-              {" "}
-              Summary
-            </div>
-            <div className="text-2xl mx-4">
-              {responseSummary ? (
-                responseSummary
-              ) : buttonClicked ? (
-                <span className="loading loading-infinity loading-lg"></span>
-              ) : null}
-            </div>
-          </div>
-        </div>
-        <div
-          id="game_dev_projects"
-          className="hidden p-8 bg-base-300 m-8 background-with-opacity"
-        >
-          <div className="flex justify-start">
-            {" "}
-            <div className="text-4xl text-left p-4"> Question </div>
-          </div>
+					<div className="flex justify-start">
+						{" "}
+						<div className="text-4xl text-left p-4">Response</div>
+					</div>
+					<div className="flex justify-start flex-col gap-4">
+						{" "}
+						<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
+							{" "}
+							Sections Referred
+						</div>
+						<div className="gap-2 mx-4">
+							{responseSections.length > 0 ? (
+								responseSections.map((thing) => {
+									return (
+										<div className="mx-4 badge badge-primary p-4 text-2xl">
+											{thing}
+										</div>
+									);
+								})
+							) : buttonClicked ? (
+								<span className="loading loading-infinity loading-lg"></span>
+							) : null}
+						</div>
+						<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
+							{" "}
+							Response
+						</div>
+						<div className="text-2xl mx-4">
+							{responseAnswer ? (
+								responseAnswer.map((thing) => {
+									return <div>{thing}</div>;
+								})
+							) : buttonClicked ? (
+								<span className="loading loading-infinity loading-lg"></span>
+							) : null}
+						</div>
+						<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
+							{" "}
+							References
+						</div>
+						<div className="text-2xl mx-4">
+							{responseReferences.length > 0 ? (
+								responseReferences
+							) : buttonClicked ? (
+								<span className="loading loading-infinity loading-lg"></span>
+							) : null}
+						</div>
+						<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
+							{" "}
+							Summary
+						</div>
+						<div className="text-2xl mx-4">
+							{responseSummary ? (
+								responseSummary
+							) : buttonClicked ? (
+								<span className="loading loading-infinity loading-lg"></span>
+							) : null}
+						</div>
+					</div>
+				</div>
+				<div
+					id="game_dev_projects"
+					className="hidden p-8 bg-base-300 m-8 background-with-opacity"
+				>
+					<div className="flex justify-start">
+						{" "}
+						<div className="text-4xl text-left p-4"> Question </div>
+					</div>
 
-          {/* <ProjectSection
+					{/* <ProjectSection
 					ordered_projects={ordered_projects_major}
 					svg_name={"majorssvg"}
 				/> */}
-          <div className="flex flex-col justify-between w-full items-start">
-            <span className=" text-3xl m-4 label-text text-left w-2/3">
-              What is your Query?
-            </span>
-            <input
-              type="text"
-              placeholder="Enter Identifier"
-              value={userQuery}
-              onChange={(e) => {
-                setuserQuery(e.target.value);
-              }}
-              className="input input-bordered input-lg w-full max-w-xs m-2"
-            />
-          </div>
+					<div className="flex flex-col justify-between w-full items-start">
+						<span className=" text-3xl m-4 label-text text-left w-2/3">
+							What is your Query?
+						</span>
+						<input
+							type="text"
+							placeholder="Enter Identifier"
+							value={userQuery}
+							onChange={(e) => {
+								setuserQuery(e.target.value);
+							}}
+							className="input input-bordered input-lg w-full max-w-xs m-2"
+						/>
+					</div>
 
-          <button
-            className="btn-lg btn-secondary rounded-xl m-4 text-2xl"
-            onClick={() => {
-              getResponses();
-              setButtonClicked(true);
-            }}
-          >
-            {" "}
-            Ask!
-          </button>
+					<button
+						className="btn-lg btn-secondary rounded-xl m-4 text-2xl"
+						onClick={() => {
+							getResponses();
+							setButtonClicked(true);
+						}}
+					>
+						{" "}
+						Ask!
+					</button>
 
-          <div className="flex justify-start">
-            {" "}
-            <div className="text-4xl text-left p-4">Response</div>
-          </div>
-          <div className="flex justify-start flex-col gap-4">
-            {" "}
-            <div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
-              {" "}
-              Sections Referred
-            </div>
-            <div className="gap-2 mx-4">
-              {responseSections.length > 0 ? (
-                responseSections.map((thing) => {
-                  return (
-                    <div className="mx-4 badge badge-primary p-4 text-2xl">
-                      {thing}
-                    </div>
-                  );
-                })
-              ) : buttonClicked ? (
-                <span className="loading loading-infinity loading-lg"></span>
-              ) : null}
-            </div>
-            <div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
-              {" "}
-              Response
-            </div>
-            <div className="text-2xl mx-4">
-              {responseAnswer ? (
-                responseAnswer.map((thing) => {
-                  return <div>{thing}</div>;
-                })
-              ) : buttonClicked ? (
-                <span className="loading loading-infinity loading-lg"></span>
-              ) : null}
-            </div>
-            <div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
-              {" "}
-              References
-            </div>
-            <div className="text-2xl mx-4">
-              {responseReferences.length > 0 ? (
-                responseReferences
-              ) : buttonClicked ? (
-                <span className="loading loading-infinity loading-lg"></span>
-              ) : null}
-            </div>
-            <div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
-              {" "}
-              Summary
-            </div>
-            <div className="text-2xl mx-4">
-              {responseSummary ? (
-                responseSummary
-              ) : buttonClicked ? (
-                <span className="loading loading-infinity loading-lg"></span>
-              ) : null}
-            </div>
-          </div>
-        </div>
-        <div>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-        </div>
-      </div>
-    </body>
-  );
+					<div className="flex justify-start">
+						{" "}
+						<div className="text-4xl text-left p-4">Response</div>
+					</div>
+					<div className="flex justify-start flex-col gap-4">
+						{" "}
+						<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
+							{" "}
+							Sections Referred
+						</div>
+						<div className="gap-2 mx-4">
+							{responseSections.length > 0 ? (
+								responseSections.map((thing) => {
+									return (
+										<div className="mx-4 badge badge-primary p-4 text-2xl">
+											{thing}
+										</div>
+									);
+								})
+							) : buttonClicked ? (
+								<span className="loading loading-infinity loading-lg"></span>
+							) : null}
+						</div>
+						<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
+							{" "}
+							Response
+						</div>
+						<div className="text-2xl mx-4">
+							{responseAnswer ? (
+								responseAnswer.map((thing) => {
+									return <div>{thing}</div>;
+								})
+							) : buttonClicked ? (
+								<span className="loading loading-infinity loading-lg"></span>
+							) : null}
+						</div>
+						<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
+							{" "}
+							References
+						</div>
+						<div className="text-2xl mx-4">
+							{responseReferences.length > 0 ? (
+								responseReferences
+							) : buttonClicked ? (
+								<span className="loading loading-infinity loading-lg"></span>
+							) : null}
+						</div>
+						<div className="text-3xl text-left mx-4 outline w-fit outline-1 rounded-lg p-2">
+							{" "}
+							Summary
+						</div>
+						<div className="text-2xl mx-4">
+							{responseSummary ? (
+								responseSummary
+							) : buttonClicked ? (
+								<span className="loading loading-infinity loading-lg"></span>
+							) : null}
+						</div>
+					</div>
+				</div>
+				<div>
+					<br></br>
+					<br></br>
+					<br></br>
+					<br></br>
+					<br></br>
+				</div>
+			</div>
+		</body>
+	);
 };
 
 export default Home;
