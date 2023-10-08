@@ -1,4 +1,3 @@
-
 from django.http import JsonResponse
 from django.shortcuts import render
 from langchain.embeddings import HuggingFaceEmbeddings
@@ -15,12 +14,10 @@ from django.views.decorators.csrf import csrf_exempt
 from django.db import connection
 import re
 
-
 def is_valid_email(email):
     # Regular expression for a valid email format
     email_pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
     return re.match(email_pattern, email)
-
 
 @csrf_exempt
 def register_user(request):
@@ -59,7 +56,6 @@ def register_user(request):
 
     return JsonResponse({'message': 'Only POST requests are allowed'}, status=405)
 
-
 @csrf_exempt
 def login_user(request):
     if request.method == 'POST':
@@ -94,14 +90,11 @@ def login_user(request):
 
     return JsonResponse({'message': 'Only POST requests are allowed'}, status=405)
 
-
 def say_hello(request):
     return render(request, 'hello.html')
 
-
 def home(req):
     return render(req, 'home.html')
-
 
 def remove_special_characters(text_list):
     special_chars = ["[", "]", "\\", "\n"]
@@ -109,6 +102,11 @@ def remove_special_characters(text_list):
         text_list = [text.replace(char, "") for text in text_list]
     return text_list
 
+def beautify(text):
+    text = re.sub(r'\([^)]*\)|<[^>]*>', '', text)
+    text = re.sub(r'(\.\s[•A-Za-z0-9])\s', r'\1\n', text)
+    text = re.sub(r'\.{2,}', '', text)
+    return text
 
 def nasa(request):
 
@@ -142,9 +140,8 @@ def nasa(request):
     #     )
 
     # Return answers, sections, and references as a JSON response
-    return JsonResponse({'answers': answers, 'sections': sections, 'references': 'https://standards.nasa.gov/sites/default/files/standards/NASA/Baseline-w/CHANGE-1/1/nasa-std-5018_revalidated.pdf'})
-
-
+    good_answers = beautify(answers[0])
+    return JsonResponse({'answers': good_answers, 'sections': sections, 'references': 'https://standards.nasa.gov/sites/default/files/standards/NASA/Baseline-w/CHANGE-1/1/nasa-std-5018_revalidated.pdf'})
 
 def bulletin(request):
 
@@ -171,11 +168,11 @@ def bulletin(request):
     for answer in answers:
         matches = re.findall(pattern, answer)
         sections.extend(matches)
-
+        
+        
+    good_answers = beautify(answers[0])
     # Return answers, sections, and references as a JSON response
-    return JsonResponse({'answers': answers, 'sections': sections, 'references': 'https://www.nasa.gov/wp-content/uploads/2022/05/tb_summary_091922.pdf'})
-
-
+    return JsonResponse({'answers': good_answers, 'sections': sections, 'references': 'https://www.nasa.gov/wp-content/uploads/2022/05/tb_summary_091922.pdf'})
 
 def standards(request):
     
@@ -203,14 +200,14 @@ def standards(request):
         matches = re.findall(pattern, answer)
         sections.extend(matches)
 
+    good_answers = beautify(answers[0])
     # Return answers, sections, and references as a JSON response
     response_data = {
-        'answers': answers,
+        'answers': good_answers,
         'sections': sections,
         'references': 'https://standards.nasa.gov/all-standards',
     }
     return JsonResponse(response_data)
-
 
 def spacetech(request):
     
@@ -238,15 +235,14 @@ def spacetech(request):
         matches = re.findall(pattern, answer)
         sections.extend(matches)
 
+    good_answers = beautify(answers[0])
     # Return answers, sections, and references as a JSON response
     response_data = {
-        'answers': answers,
+        'answers': good_answers,
         'sections': sections,
         'references': 'https://sti.nasa.gov/',
     }
     return JsonResponse(response_data)
-
-
 
 def queries_request(request):
     if request.method == 'GET':
