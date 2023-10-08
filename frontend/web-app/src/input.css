@@ -27,6 +27,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Rubik", sans-serif;
 }
 .background-image {
   background-image: url("docsbg.jpg");
@@ -46,24 +47,32 @@ body {
   background-image: url("docsbg.jpg");
   background-size: cover;
   background-attachment: fixed;
-}   
-    .rubik {
-        font-family: "Rubik", sans-serif;
-    }
-    
-    .quicksand {
-        font-family: "quicksand", sans-serif;
-        box-shadow: var(--shadow-elevation-high);
-    }
-    .background-with-opacity {
-        background-color: rgba(255, 255, 255, 0.2); /* White with 50% opacity */
-      }
-      .background-with-opacity2 {
-        background-color: rgba(255, 255, 255, 0.1); /* White with 50% opacity */
-      }
-      
-      .background-with-opacity3 {
-        background-color: rgba(255, 255, 255, 0.3); /* White with 50% opacity */
-      } .background-with-opacity4 {
-        background-color: rgba(0, 0, 0, 0.7); /* White with 50% opacity */
-      }
+}
+.rubik {
+  font-family: "Rubik", sans-serif;
+}
+
+.quicksand {
+  font-family: "quicksand", sans-serif;
+  box-shadow: var(--shadow-elevation-high);
+}
+.background-with-opacity {
+  background-color: rgba(255, 255, 255, 0.2); /* White with 50% opacity */
+}
+.background-with-opacity2 {
+  background-color: rgba(255, 255, 255, 0.1); /* White with 50% opacity */
+}
+
+.background-with-opacity3 {
+  background-color: rgba(255, 255, 255, 0.3); /* White with 50% opacity */
+}
+.background-with-opacity4 {
+  background-color: rgba(0, 0, 0, 0.7); /* White with 50% opacity */
+}
+.background-with-opacity5 {
+  background-color: rgba(0, 0, 0, 0.6); /* White with 50% opacity */
+}
+.btn-yasu {
+  width: 120px;
+  height: 35px;
+}
