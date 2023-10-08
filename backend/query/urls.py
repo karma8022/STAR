@@ -15,4 +15,5 @@ urlpatterns=[
     path('register/', views.register_user, name='register_user'),
     path('nasa/', views.nasa, name='nasa'),
     path('bulletin/', views.bulletin, name='bulletin'),
+    path('pre_queries/', views.queries_request, name='queries_request'),
 ]
