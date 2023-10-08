@@ -5,7 +5,7 @@ import { ThemeContext } from "../context/ThemeContext";
 const ProjectSection = ({ ordered_projects, svg_name }) => {
   const { theme } = React.useContext(ThemeContext);
   return (
-    <section className="p-2 m-2 mb-20 text-xl text-base-content">
+    <section className="p-2 m-2 mb-20 text-xl text-base-content ">
       <div className="flex justify-center p-4">
         <div
           className="flex flex-wrap justify-center gap-x-4 gap-y-8 xl:gap-12 w-4/5
