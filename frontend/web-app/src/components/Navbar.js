@@ -54,7 +54,7 @@ export function Navbar() {
               </NavLink>
             </li>
             <li className="text-base md:text-lg">
-              <NavLink to={"/signin"} id="contact_element">
+              <NavLink to={"/"} id="contact_element">
                 <ArrowLeftOnRectangleIcon className="w-6 h-6" />
                 Logout
               </NavLink>

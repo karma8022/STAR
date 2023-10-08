@@ -392,13 +392,7 @@ const Home = () => {
 								<span className="loading loading-infinity loading-lg"></span>
 							) : null}
 						</div>
-						<div className="text-2xl mx-4">
-							{responseSummary ? (
-								responseSummary
-							) : buttonClicked ? (
-								<span className="loading loading-infinity loading-lg"></span>
-							) : null}
-						</div>
+
 					</div>
 				</div>
 				<div
