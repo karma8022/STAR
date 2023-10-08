@@ -9,5 +9,6 @@ urlpatterns=[
     path('nasa/', views.nasa, name='nasa'),
     path('bulletin/', views.bulletin, name='bulletin'),
     path('pre_queries/', views.queries_request, name='queries_request'),
-    path('spacetech/', views.standards, name='spacetech'),
+    path('spacetech/', views.spacetech, name='spacetech'),
+    path('standards/', views.standards, name='standards')
 ]
