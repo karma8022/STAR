@@ -392,7 +392,6 @@ const Home = () => {
 								<span className="loading loading-infinity loading-lg"></span>
 							) : null}
 						</div>
-
 					</div>
 				</div>
 				<div
