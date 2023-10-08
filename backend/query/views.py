@@ -105,10 +105,14 @@ def remove_special_characters(text_list):
 
 import re
 
+
 def nasa(request):
-    embedding2 = GooglePalmEmbeddings(google_api_key="AIzaSyBysL_SjXQkJ8lI1WPTz4VwyH6fxHijGUE")
-    vdb_chunks_HF = FAISS.load_local("query/vdb_chunks_HF", embedding2, index_name="indexnasa")
+    embedding2 = GooglePalmEmbeddings(
+        google_api_key="YOUR_GOOGLE_API_KEY_HERE")
+    vdb_chunks_HF = FAISS.load_local(
+        "query/vdb_chunks_HF", embedding2, index_name="indexnasa")
     query = request.GET.get('query', '')
+    username = request.GET.get('username', '')
 
     # Check if the user's query contains the word "summary"
 
@@ -125,8 +129,16 @@ def nasa(request):
         matches = re.findall(pattern, answer)
         sections.extend(matches)
 
-    # Return answers and sections as a JSON response
-    return JsonResponse({'answers': answers, 'sections': sections,'references':'https://standards.nasa.gov/sites/default/files/standards/NASA/Baseline-w/CHANGE-1/1/nasa-std-5018_revalidated.pdf'})
+    # Append the query to the queries_data field in the table
+    with connection.cursor() as cursor:
+        cursor.execute(
+            "UPDATE User_Relation SET queries_data = CONCAT(queries_data, %s) WHERE username = %s",
+            # Replace 'exampleUser' with the actual username
+            (f' {query}, {username}')
+        )
+
+    # Return answers, sections, and references as a JSON response
+    return JsonResponse({'answers': answers, 'sections': sections, 'references': 'https://standards.nasa.gov/sites/default/files/standards/NASA/Baseline-w/CHANGE-1/1/nasa-std-5018_revalidated.pdf'})
 
 
 def bulletin(request):
@@ -207,3 +219,34 @@ def spacetech(request):
         'references': 'https://sti.nasa.gov/',
     }
     return JsonResponse(response_data)
+
+def queries_request(request):
+    if request.method == 'GET':
+        try :
+
+            data = json.loads(request.body)
+            username = data.get('Username')
+            print(username)
+
+            if not username:
+                return JsonResponse({'message': 'Username is required'}, status=400)
+
+            # Retrieve query data from the database based on the username
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT queries_data FROM User_Relation WHERE username = %s", [username])
+                query_data = cursor.fetchone()
+
+            if query_data:
+                # Extract the query data from the result
+                # Assuming queries_data is in the first column
+                queries_data = query_data[0]
+
+                return JsonResponse({'queries_data': queries_data})
+            else:
+                return JsonResponse({'message': 'User not found'}, status=404)
+
+        except json.JSONDecodeError:
+            return JsonResponse({'message': 'Invalid JSON data'}, status=400)    
+
+    return JsonResponse({'message': 'Only GET requests are allowed'}, status=405)
