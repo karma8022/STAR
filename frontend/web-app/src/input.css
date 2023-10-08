@@ -1,51 +1,50 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300");
-@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Quicksand&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @media (prefers-color-scheme: dark) {
-    :root {
-        --shadow-color: 216deg 12% 56%;
-    }
+  :root {
+    --shadow-color: 216deg 12% 56%;
+  }
 }
 
 :root {
-    --shadow-color: 286deg 36% 56%;
-    --shadow-elevation-high:
-        0.9px 0.9px 1.4px hsl(var(--shadow-color) / 0.34),
-        5.5px 5.3px 8.6px -0.4px hsl(var(--shadow-color) / 0.34),
-        10.3px 9.8px 16px -0.7px hsl(var(--shadow-color) / 0.34),
-        16.9px 16.1px 26.3px -1.1px hsl(var(--shadow-color) / 0.34),
-        27px 25.7px 41.9px -1.4px hsl(var(--shadow-color) / 0.34),
-        42.2px 40.2px 65.6px -1.8px hsl(var(--shadow-color) / 0.34),
-        64.2px 61.2px 99.8px -2.1px hsl(var(--shadow-color) / 0.34),
-        94.5px 90.1px 146.9px -2.5px hsl(var(--shadow-color) / 0.34);
+  --shadow-color: 286deg 36% 56%;
+  --shadow-elevation-high: 0.9px 0.9px 1.4px hsl(var(--shadow-color) / 0.34),
+    5.5px 5.3px 8.6px -0.4px hsl(var(--shadow-color) / 0.34),
+    10.3px 9.8px 16px -0.7px hsl(var(--shadow-color) / 0.34),
+    16.9px 16.1px 26.3px -1.1px hsl(var(--shadow-color) / 0.34),
+    27px 25.7px 41.9px -1.4px hsl(var(--shadow-color) / 0.34),
+    42.2px 40.2px 65.6px -1.8px hsl(var(--shadow-color) / 0.34),
+    64.2px 61.2px 99.8px -2.1px hsl(var(--shadow-color) / 0.34),
+    94.5px 90.1px 146.9px -2.5px hsl(var(--shadow-color) / 0.34);
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 .background-image {
-    background-image: url('docsbg.jpg');
-    background-size: cover; /* You can adjust this property based on your needs */
-    /* Additional background properties can be set here */
-  }
-  
-body {
-    padding: 1rem;
-    /* min-height: 100vh; */
-    /* background-color: #ffffff; */
-    /*background-image: url("data:image/svg+xml,%3Csvg width='42' height='44' viewBox='0 0 42 44' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='Page-1' fill='none' fill-rule='evenodd'%3E%3Cg id='brick-wall' fill='%23590202' fill-opacity='0.19'%3E%3Cpath d='M0 0h42v44H0V0zm1 1h40v20H1V1zM0 23h20v20H0V23zm22 0h20v20H22V23z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");*/
-    font-family: "quicksand", sans-serif;
-    /* overflow: hidden; */
+  background-image: url("docsbg.jpg");
+  background-size: cover; /* You can adjust this property based on your needs */
+  /* Additional background properties can be set here */
+}
 
-    background-color: black;
-    background-image: url("docsbg.jpg");
-    background-size: cover;
+body {
+  padding: 1rem;
+  /* min-height: 100vh; */
+  /* background-color: #ffffff; */
+  /*background-image: url("data:image/svg+xml,%3Csvg width='42' height='44' viewBox='0 0 42 44' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='Page-1' fill='none' fill-rule='evenodd'%3E%3Cg id='brick-wall' fill='%23590202' fill-opacity='0.19'%3E%3Cpath d='M0 0h42v44H0V0zm1 1h40v20H1V1zM0 23h20v20H0V23zm22 0h20v20H22V23z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");*/
+  font-family: "quicksand", sans-serif;
+  /* overflow: hidden; */
+
+  background-color: black;
+  background-image: url("docsbg.jpg");
+  background-size: cover;
   background-attachment: fixed;
 }   
     .rubik {
