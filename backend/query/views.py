@@ -186,9 +186,9 @@ def jh(request):
     # Return answers and summary as a JSON response
     return JsonResponse({'answers': answers})
 
-def mov(request):
+def nasa(request):
     embedding2 = GooglePalmEmbeddings(google_api_key="AIzaSyBysL_SjXQkJ8lI1WPTz4VwyH6fxHijGUE")
-    vdb_chunks_HF = FAISS.load_local("query/vdb_chunks_HF", embedding2, index_name="indexMOV")
+    vdb_chunks_HF = FAISS.load_local("query/vdb_chunks_HF", embedding2, index_name="indexnasa")
     query = request.GET.get('query', '')
 
     # Check if the user's query contains the word "summary"
@@ -200,96 +200,112 @@ def mov(request):
     # Return answers and summary as a JSON response
     return JsonResponse({'answers': answers})
 
-def nasa(request):
-    # Initialize Google PALM embeddings
-    embedding2 = GooglePalmEmbeddings(google_api_key="AIzaSyBysL_SjXQkJ8lI1WPTz4VwyH6fxHijGUE")
 
-    # Load the FAISS vector store
-    vdb_chunks_HF = FAISS.load_local("query/vdb_chunks_HF", embedding2, index_name="indexnasa")
 
-    # Get the query from the request's GET parameters
-    query = request.GET.get('query', '')
+# def nasa(request):
+#     # Initialize Google PALM embeddings
+#     embedding2 = GooglePalmEmbeddings(google_api_key="AIzaSyBysL_SjXQkJ8lI1WPTz4VwyH6fxHijGUE")
 
-    # Retrieve relevant documents
-    ans = vdb_chunks_HF.as_retriever().get_relevant_documents(query)
-    answers = [doc.page_content for doc in ans] if ans else []
+#     # Load the FAISS vector store
+#     vdb_chunks_HF = FAISS.load_local("query/vdb_chunks_HF", embedding2, index_name="indexnasa")
 
-    # Merge and summarize the answers
-    top_5_results = answers[:10]
-    concatenated_answer = " ".join(top_5_results)
-    combined_query = f"{query} Context: {concatenated_answer}"
-    new_ans = vdb_chunks_HF.as_retriever().get_relevant_documents(combined_query)
-    new_final_ans = [doc.page_content for doc in new_ans] if new_ans else []
-    merged_result = " ".join(new_final_ans)
+#     # Get the query from the request's GET parameters
+#     query = request.GET.get('query', '')
 
-    # Initialize the BERT summarization pipeline
-    summarizer = pipeline("summarization")
+#     # Retrieve relevant documents
+#     ans = vdb_chunks_HF.as_retriever().get_relevant_documents(query)
+#     answers = [doc.page_content for doc in ans] if ans else []
 
-    # Summarize the merged result using BERT
-    summary = summarizer(merged_result, max_length=150, min_length=30, do_sample=False)
+#     # Merge and summarize the answers
+#     top_5_results = answers[:10]
+#     concatenated_answer = " ".join(top_5_results)
+#     combined_query = f"{query} Context: {concatenated_answer}"
+#     new_ans = vdb_chunks_HF.as_retriever().get_relevant_documents(combined_query)
+#     new_final_ans = [doc.page_content for doc in new_ans] if new_ans else []
+#     merged_result = " ".join(new_final_ans)
 
-    # Determine the RAG status based on summary (example: length-based)
-    summary_text = summary[0]["summary_text"]
-    if len(summary_text) < 50:
-        rag_status = "Green"
-    elif len(summary_text) < 100:
-        rag_status = "Amber"
-    else:
-        rag_status = "Red"
+#     # Initialize the BERT summarization pipeline
+#     summarizer = pipeline("summarization")
 
-    # Return answers, summary, and RAG status as a JSON response
-    response_data = {
-        'answers': answers,
-        'summary': summary_text,
-        'rag_status': rag_status,
-    }
+#     # Summarize the merged result using BERT
+#     summary = summarizer(merged_result, max_length=150, min_length=30, do_sample=False)
 
-    return JsonResponse(response_data)
-    return JsonResponse({'answers': answers})
+#     # Determine the RAG status based on summary (example: length-based)
+#     summary_text = summary[0]["summary_text"]
+#     if len(summary_text) < 50:
+#         rag_status = "Green"
+#     elif len(summary_text) < 100:
+#         rag_status = "Amber"
+#     else:
+#         rag_status = "Red"
+
+#     # Return answers, summary, and RAG status as a JSON response
+#     response_data = {
+#         'answers': answers,
+#         'summary': summary_text,
+#         'rag_status': rag_status,
+#     }
+
+#     return JsonResponse(response_data)
+#     return JsonResponse({'answers': answers})
+
+# def bulletin(request):
+#     # Initialize Google PALM embeddings
+#     embedding2 = GooglePalmEmbeddings(google_api_key="AIzaSyBysL_SjXQkJ8lI1WPTz4VwyH6fxHijGUE")
+
+#     # Load the FAISS vector store
+#     vdb_chunks_HF = FAISS.load_local("query/vdb_chunks_HF", embedding2, index_name="indexBulletin")
+
+#     # Get the query from the request's GET parameters
+#     query = request.GET.get('query', '')
+
+#     # Retrieve relevant documents
+#     ans = vdb_chunks_HF.as_retriever().get_relevant_documents(query)
+#     answers = [doc.page_content for doc in ans] if ans else []
+
+#     # Merge and summarize the answers
+#     top_5_results = answers[:10]
+#     concatenated_answer = " ".join(top_5_results)
+#     combined_query = f"{query} Context: {concatenated_answer}"
+#     new_ans = vdb_chunks_HF.as_retriever().get_relevant_documents(combined_query)
+#     new_final_ans = [doc.page_content for doc in new_ans] if new_ans else []
+#     merged_result = " ".join(new_final_ans)
+
+#     # Initialize the BERT summarization pipeline
+#     summarizer = pipeline("summarization")
+
+#     # Summarize the merged result using BERT
+#     summary = summarizer(merged_result, max_length=150, min_length=30, do_sample=False)
+
+#     # Determine the RAG status based on summary (example: length-based)
+#     summary_text = summary[0]["summary_text"]
+#     if len(summary_text) < 50:
+#         rag_status = "Green"
+#     elif len(summary_text) < 100:
+#         rag_status = "Amber"
+#     else:
+#         rag_status = "Red"
+
+#     # Return answers, summary, and RAG status as a JSON response
+#     response_data = {
+#         'answers': answers,
+#         'summary': summary_text,
+#         'rag_status': rag_status,
+#     }
+
+#     return JsonResponse(response_data)
+#     return JsonResponse({'answers': answers})
 
 def bulletin(request):
-    # Initialize Google PALM embeddings
     embedding2 = GooglePalmEmbeddings(google_api_key="AIzaSyBysL_SjXQkJ8lI1WPTz4VwyH6fxHijGUE")
-
-    # Load the FAISS vector store
     vdb_chunks_HF = FAISS.load_local("query/vdb_chunks_HF", embedding2, index_name="indexBulletin")
-
-    # Get the query from the request's GET parameters
     query = request.GET.get('query', '')
+
+    # Check if the user's query contains the word "summary"
 
     # Retrieve relevant documents
     ans = vdb_chunks_HF.as_retriever().get_relevant_documents(query)
     answers = [doc.page_content for doc in ans] if ans else []
 
-    # Merge and summarize the answers
-    top_5_results = answers[:10]
-    concatenated_answer = " ".join(top_5_results)
-    combined_query = f"{query} Context: {concatenated_answer}"
-    new_ans = vdb_chunks_HF.as_retriever().get_relevant_documents(combined_query)
-    new_final_ans = [doc.page_content for doc in new_ans] if new_ans else []
-    merged_result = " ".join(new_final_ans)
-
-    # Initialize the BERT summarization pipeline
-    summarizer = pipeline("summarization")
-
-    # Summarize the merged result using BERT
-    summary = summarizer(merged_result, max_length=150, min_length=30, do_sample=False)
-
-    # Determine the RAG status based on summary (example: length-based)
-    summary_text = summary[0]["summary_text"]
-    if len(summary_text) < 50:
-        rag_status = "Green"
-    elif len(summary_text) < 100:
-        rag_status = "Amber"
-    else:
-        rag_status = "Red"
-
-    # Return answers, summary, and RAG status as a JSON response
-    response_data = {
-        'answers': answers,
-        'summary': summary_text,
-        'rag_status': rag_status,
-    }
-
-    return JsonResponse(response_data)
+    # Return answers and summary as a JSON response
     return JsonResponse({'answers': answers})
