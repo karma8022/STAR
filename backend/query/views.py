@@ -105,10 +105,14 @@ def remove_special_characters(text_list):
 
 import re
 
+
 def nasa(request):
-    embedding2 = GooglePalmEmbeddings(google_api_key="AIzaSyBysL_SjXQkJ8lI1WPTz4VwyH6fxHijGUE")
-    vdb_chunks_HF = FAISS.load_local("query/vdb_chunks_HF", embedding2, index_name="indexnasa")
+    embedding2 = GooglePalmEmbeddings(
+        google_api_key="YOUR_GOOGLE_API_KEY_HERE")
+    vdb_chunks_HF = FAISS.load_local(
+        "query/vdb_chunks_HF", embedding2, index_name="indexnasa")
     query = request.GET.get('query', '')
+    username = request.GET.get('username', '')
 
     # Check if the user's query contains the word "summary"
 
@@ -125,8 +129,16 @@ def nasa(request):
         matches = re.findall(pattern, answer)
         sections.extend(matches)
 
-    # Return answers and sections as a JSON response
-    return JsonResponse({'answers': answers, 'sections': sections,'references':'https://standards.nasa.gov/sites/default/files/standards/NASA/Baseline-w/CHANGE-1/1/nasa-std-5018_revalidated.pdf'})
+    # Append the query to the queries_data field in the table
+    with connection.cursor() as cursor:
+        cursor.execute(
+            "UPDATE User_Relation SET queries_data = CONCAT(queries_data, %s) WHERE username = %s",
+            # Replace 'exampleUser' with the actual username
+            (f' {query}, {username}')
+        )
+
+    # Return answers, sections, and references as a JSON response
+    return JsonResponse({'answers': answers, 'sections': sections, 'references': 'https://standards.nasa.gov/sites/default/files/standards/NASA/Baseline-w/CHANGE-1/1/nasa-std-5018_revalidated.pdf'})
 
 
 def bulletin(request):
@@ -179,6 +191,35 @@ def standards(request):
         'references': 'https://standards.nasa.gov/all-standards',
     }
     return JsonResponse(response_data)
+
+def spacetech(request):
+    embedding2 = GooglePalmEmbeddings(google_api_key="AIzaSyBysL_SjXQkJ8lI1WPTz4VwyH6fxHijGUE")
+    vdb_chunks_HF = FAISS.load_local("query/vdb_chunks_HF", embedding2, index_name="indexSpaceTech")
+    query = request.GET.get('query', '')
+
+    # Check if the user's query contains the word "summary"
+
+    # Retrieve relevant documents
+    ans = vdb_chunks_HF.as_retriever().get_relevant_documents(query)
+    answers = [doc.page_content for doc in ans] if ans else []
+
+    # Define the regex pattern
+    pattern = r'\d+\.\d+'
+
+    # Find and store matches in answers and sections
+    sections = []
+    for answer in answers:
+        matches = re.findall(pattern, answer)
+        sections.extend(matches)
+
+    # Return answers, sections, and references as a JSON response
+    response_data = {
+        'answers': answers,
+        'sections': sections,
+        'references': 'https://sti.nasa.gov/',
+    }
+    return JsonResponse(response_data)
+
 def queries_request(request):
     if request.method == 'GET':
         try :
