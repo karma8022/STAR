@@ -179,3 +179,33 @@ def standards(request):
         'references': 'https://standards.nasa.gov/all-standards',
     }
     return JsonResponse(response_data)
+def queries_request(request):
+    if request.method == 'GET':
+        try :
+
+            data = json.loads(request.body)
+            username = data.get('Username')
+            print(username)
+
+            if not username:
+                return JsonResponse({'message': 'Username is required'}, status=400)
+
+            # Retrieve query data from the database based on the username
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT queries_data FROM User_Relation WHERE username = %s", [username])
+                query_data = cursor.fetchone()
+
+            if query_data:
+                # Extract the query data from the result
+                # Assuming queries_data is in the first column
+                queries_data = query_data[0]
+
+                return JsonResponse({'queries_data': queries_data})
+            else:
+                return JsonResponse({'message': 'User not found'}, status=404)
+
+        except json.JSONDecodeError:
+            return JsonResponse({'message': 'Invalid JSON data'}, status=400)    
+
+    return JsonResponse({'message': 'Only GET requests are allowed'}, status=405)
