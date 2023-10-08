@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1696781819 "/run/media/krishnaraj/Classes/University/Clubs and Projects/STAR/documentation/doc.tex" "doc.pdf" "doc" 1696781826 0
-  "/run/media/krishnaraj/Classes/University/Clubs and Projects/STAR/documentation/doc.tex" 1696781818 13502 2599db45ac2d8fec7bc9ca9181a1cb97 ""
+["pdflatex"] 1696782109 "/run/media/krishnaraj/Classes/University/Clubs and Projects/STAR/documentation/doc.tex" "doc.pdf" "doc" 1696782114 0
+  "/run/media/krishnaraj/Classes/University/Clubs and Projects/STAR/documentation/doc.tex" 1696782099 13652 d2fe44fa41422b34b990fefb2cc02c3b ""
   "/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc" 1689853683 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1689853683 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texmf-dist/fonts/tfm/adobe/ncntrsbk/pncb8r.tfm" 1689853683 3220 7b5d1a9569a08754f1bdfbc1c7ad8dbd ""
@@ -109,11 +109,12 @@
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1695285212 4482925 a1a254cacf5c7108f7b28226c8f3b19f ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1695285176 6768050 f1abe6d2662983ea80d0bdb89af7992a ""
   "answer.png" 1696778920 2822324 c5419072d7b948b4a3d291830a561f1d ""
-  "doc.aux" 1696781826 3372 0e4e2fdaabbce566dacdbc1fb73c7f4a "pdflatex"
-  "doc.out" 1696781826 2127 27393d728f73749572f6df5bc3aea963 "pdflatex"
+  "doc.aux" 1696782114 3609 aa41b09c85090438387607fd45ab582e "pdflatex"
+  "doc.out" 1696782114 2215 e950a57d22d41813f5f6bc7338fdca6a "pdflatex"
   "doc.png" 1696778985 2686877 f506433056b3629ef6f1dd72506e0c31 ""
-  "doc.tex" 1696781818 13502 2599db45ac2d8fec7bc9ca9181a1cb97 ""
-  "doc.toc" 1696781826 1533 e9f88a4627560c072cd18c5f1d04ae34 "pdflatex"
+  "doc.tex" 1696782099 13652 d2fe44fa41422b34b990fefb2cc02c3b ""
+  "doc.toc" 1696782114 1605 050765d4a0365fbe18865b9c7f981a68 "pdflatex"
+  "server.jpeg" 1696782046 181826 4a905d55bd18e5e4142ebcb60fa51fe6 ""
   "signin.png" 1696778917 2626966 f99c5288b4e669abca2c840d04dfab0a ""
   (generated)
   "doc.aux"

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.9.21)  8 OCT 2023 21:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.9.21)  8 OCT 2023 21:51
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -694,12 +694,12 @@ LaTeX Font Info:    Font shape `T1/fnc/m/n' will be
 (Font)              scaled to size 11.15991pt on input line 145.
 LaTeX Font Info:    Font shape `T1/fnc/b/n' will be
 (Font)              scaled to size 11.15991pt on input line 145.
-<./signin.png, id=115, 2127.95pt x 1158.3275pt>
+<./signin.png, id=120, 2127.95pt x 1158.3275pt>
 File: ./signin.png Graphic file (type png)
 <use ./signin.png>
 Package pdftex.def Info: ./signin.png  used on input line 148.
 (pdftex.def)             Requested size: 446.26582pt x 242.92014pt.
-<./answer.png, id=117, 2127.95pt x 1158.3275pt>
+<./answer.png, id=122, 2127.95pt x 1158.3275pt>
 File: ./answer.png Graphic file (type png)
 <use ./answer.png>
 Package pdftex.def Info: ./answer.png  used on input line 154.
@@ -726,7 +726,7 @@ File: ./answer.png Graphic file (type png)
 <use ./answer.png>
 Package pdftex.def Info: ./answer.png  used on input line 160.
 (pdftex.def)             Requested size: 446.26582pt x 242.92014pt.
-<./doc.png, id=124, 2127.95pt x 1158.3275pt>
+<./doc.png, id=129, 2127.95pt x 1158.3275pt>
 File: ./doc.png Graphic file (type png)
 <use ./doc.png>
 Package pdftex.def Info: ./doc.png  used on input line 166.
@@ -740,6 +740,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-1.93642pt}.
 
 [2 <./answer.png>]
+<./server.jpeg, id=137, 963.6pt x 502.12593pt>
+File: ./server.jpeg Graphic file (type jpg)
+<use ./server.jpeg>
+Package pdftex.def Info: ./server.jpeg  used on input line 173.
+(pdftex.def)             Requested size: 446.26582pt x 232.54375pt.
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.93642pt, for example:
@@ -747,7 +753,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-1.93642pt}.
 
-[3 <./doc.png>]
+[3 <./doc.png> <./server.jpeg>]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.93642pt, for example:
@@ -764,7 +770,15 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-1.93642pt}.
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 270--273
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.93642pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.93642pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-1.93642pt}.
+
+[6]
+Underfull \hbox (badness 10000) in paragraph at lines 278--281
 
  []
 
@@ -775,31 +789,23 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-1.93642pt}.
 
-[6]
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 13.93642pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.93642pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-(fancyhdr)                \addtolength{\topmargin}{-1.93642pt}.
-
 [7] (./doc.aux)
 Package rerunfilecheck Info: File `doc.out' has not changed.
-(rerunfilecheck)             Checksum: 27393D728F73749572F6DF5BC3AEA963;2127.
+(rerunfilecheck)             Checksum: E950A57D22D41813F5F6BC7338FDCA6A;2215.
  ) 
 Here is how much of TeX's memory you used:
- 13063 strings out of 477985
- 197624 string characters out of 5840058
+ 13074 strings out of 477985
+ 197786 string characters out of 5840058
  1861388 words of memory out of 5000000
- 32967 multiletter control sequences out of 15000+600000
+ 32974 multiletter control sequences out of 15000+600000
  555266 words of font info for 81 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  75i,12n,76p,703b,542s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf-dist/fonts/type1/urw/ncntrsbk/uncb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/ncntrsbk/uncr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/ncntrsbk/uncri8a.pfb>
-Output written on doc.pdf (9 pages, 6846200 bytes).
+Output written on doc.pdf (9 pages, 7028382 bytes).
 PDF statistics:
- 243 PDF objects out of 1000 (max. 8388607)
- 217 compressed objects within 3 object streams
- 83 named destinations out of 1000 (max. 500000)
- 176 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 251 PDF objects out of 1000 (max. 8388607)
+ 224 compressed objects within 3 object streams
+ 85 named destinations out of 1000 (max. 500000)
+ 189 words of extra memory for PDF output out of 10000 (max. 10000000)
 
