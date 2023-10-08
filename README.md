@@ -29,6 +29,16 @@ App created for the NASA SpaceApps Challenge Hackathon in MITWPU Pune in 2023. C
 
 # Features
 
+1. Ability to ingest and convert documents into queryable information
+2. Ability to text with the contents of the document 
+3. Different document sources to choose from 
+4. Ability to view previous queries of a user 
+5. User authentication and security
+6. Ability to view source documents directly 
+7. Segmented answers that provide section,response,ref
+8. Interactive UI
+9. Dark mode
+
 
 # Credits
 
