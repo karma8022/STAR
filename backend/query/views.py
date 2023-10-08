@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.shortcuts import render
 from langchain.embeddings import HuggingFaceEmbeddings
 from django.http import JsonResponse, QueryDict
@@ -101,8 +102,6 @@ def remove_special_characters(text_list):
     for char in special_chars:
         text_list = [text.replace(char, "") for text in text_list]
     return text_list
-    # Return answers and summary as a JSON response
-    return JsonResponse({'answers': answers})
 
 import re
 
