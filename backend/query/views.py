@@ -152,3 +152,31 @@ def bulletin(request):
 
     # Return answers and sections as a JSON response
     return JsonResponse({'answers': answers, 'sections': sections,'references':'https://www.nasa.gov/wp-content/uploads/2022/05/tb_summary_091922.pdf'})
+
+def standards(request):
+    embedding2 = GooglePalmEmbeddings(google_api_key="AIzaSyBysL_SjXQkJ8lI1WPTz4VwyH6fxHijGUE")
+    vdb_chunks_HF = FAISS.load_local("query/vdb_chunks_HF", embedding2, index_name="indexStandards")
+    query = request.GET.get('query', '')
+
+    # Check if the user's query contains the word "summary"
+
+    # Retrieve relevant documents
+    ans = vdb_chunks_HF.as_retriever().get_relevant_documents(query)
+    answers = [doc.page_content for doc in ans] if ans else []
+
+    # Define the regex pattern
+    pattern = r'\d+\.\d+\.\d+\.\d+'
+
+    # Find and store matches in answers and sections
+    sections = []
+    for answer in answers:
+        matches = re.findall(pattern, answer)
+        sections.extend(matches)
+
+    # Return answers, sections, and references as a JSON response
+    response_data = {
+        'answers': answers,
+        'sections': sections,
+        'references': 'https://standards.nasa.gov/all-standards',
+    }
+    return JsonResponse(response_data)
