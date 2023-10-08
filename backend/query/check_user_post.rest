@@ -2,7 +2,7 @@ POST https://vq9tc4j9-8000.inc1.devtunnels.ms/query/register/
 Content-Type: application/json
 
 {
-    "Username": "Testdsd123dasdssd@co",
-    "Password": "StrongsdPfasdsdf@ssw0rd$",
-    "Email": "jssmsdfsdasdsd2026@gmail.com"
+    "Username": "Testing123",
+    "Password": "Testing@123",
+    "Email": "jssms2026@gmail.com"
 }
