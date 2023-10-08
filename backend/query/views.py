@@ -140,7 +140,7 @@ def nasa(request):
     #     )
 
     # Return answers, sections, and references as a JSON response
-    good_answers = beautify(answers[0])
+    good_answers = [beautify(answers[0])]
     return JsonResponse({'answers': good_answers, 'sections': sections, 'references': 'https://standards.nasa.gov/sites/default/files/standards/NASA/Baseline-w/CHANGE-1/1/nasa-std-5018_revalidated.pdf'})
 
 def bulletin(request):
@@ -170,7 +170,7 @@ def bulletin(request):
         sections.extend(matches)
         
         
-    good_answers = beautify(answers[0])
+    good_answers = [beautify(answers[0])]
     # Return answers, sections, and references as a JSON response
     return JsonResponse({'answers': good_answers, 'sections': sections, 'references': 'https://www.nasa.gov/wp-content/uploads/2022/05/tb_summary_091922.pdf'})
 
@@ -200,7 +200,7 @@ def standards(request):
         matches = re.findall(pattern, answer)
         sections.extend(matches)
 
-    good_answers = beautify(answers[0])
+    good_answers = [beautify(answers[0])]
     # Return answers, sections, and references as a JSON response
     response_data = {
         'answers': good_answers,
@@ -235,7 +235,7 @@ def spacetech(request):
         matches = re.findall(pattern, answer)
         sections.extend(matches)
 
-    good_answers = beautify(answers[0])
+    good_answers = [beautify(answers[0])]
     # Return answers, sections, and references as a JSON response
     response_data = {
         'answers': good_answers,
