@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1696777766 "/run/media/krishnaraj/Classes/University/Clubs and Projects/STAR/documentation/doc.tex" "doc.pdf" "doc" 1696777767 0
-  "/run/media/krishnaraj/Classes/University/Clubs and Projects/STAR/documentation/doc.tex" 1696777765 4390 03c855b0c9c8df723d9c6e6dedeb8940 ""
+["pdflatex"] 1696780278 "/run/media/krishnaraj/Classes/University/Clubs and Projects/STAR/documentation/doc.tex" "doc.pdf" "doc" 1696780280 0
+  "/run/media/krishnaraj/Classes/University/Clubs and Projects/STAR/documentation/doc.tex" 1696780277 13526 f5bc911c4705037388a84c9aa968b94f ""
   "/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc" 1689853683 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1689853683 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texmf-dist/fonts/tfm/adobe/ncntrsbk/pncb8r.tfm" 1689853683 3220 7b5d1a9569a08754f1bdfbc1c7ad8dbd ""
@@ -108,10 +108,13 @@
   "/usr/share/texmf-dist/web2c/texmf.cnf" 1689853683 40684 9b9ec0b4288972636ff6a3b9c4238efc ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1695285212 4482925 a1a254cacf5c7108f7b28226c8f3b19f ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1695285176 6768050 f1abe6d2662983ea80d0bdb89af7992a ""
-  "doc.aux" 1696777767 1664 1c377e473305058b2c914e1410d6502a "pdflatex"
-  "doc.out" 1696777767 1035 b6f996bf98a3992aaf994109e6c88b01 "pdflatex"
-  "doc.tex" 1696777765 4390 03c855b0c9c8df723d9c6e6dedeb8940 ""
-  "doc.toc" 1696777767 700 58549bf46d84b4350c3104b56589c365 "pdflatex"
+  "answer.png" 1696778920 2822324 c5419072d7b948b4a3d291830a561f1d ""
+  "doc.aux" 1696780280 3487 ce1a43497fcd8e07f28c7f69e1cfd3e3 "pdflatex"
+  "doc.out" 1696780280 2225 eeb4e1c7f08037ffe83180d8bab5ce5f "pdflatex"
+  "doc.png" 1696778985 2686877 f506433056b3629ef6f1dd72506e0c31 ""
+  "doc.tex" 1696780277 13526 f5bc911c4705037388a84c9aa968b94f ""
+  "doc.toc" 1696780280 1607 7ae3cca628dff30060c1ee060856a00d "pdflatex"
+  "signin.png" 1696778917 2626966 f99c5288b4e669abca2c840d04dfab0a ""
   (generated)
   "doc.aux"
   "doc.log"

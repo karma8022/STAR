@@ -15,3 +15,21 @@ App created for the NASA SpaceApps Challenge Hackathon in MITWPU Pune in 2023. C
 
 # Screenshots
 
+## Sign in
+![](./documentation/signin.png)
+
+## Answers
+![](./documentation/answer.png)
+
+## Query Page
+![](./documentation/query.png)
+
+## Documentation
+![](./documentation/doc.png)
+
+# Features
+
+
+# Credits
+
+Thanks to all the friends and team members to help us in making this project. 
