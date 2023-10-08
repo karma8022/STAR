@@ -17,82 +17,74 @@ import { IconUserBolt } from "@tabler/icons-react";
 
 export function Navbar() {
   return (
-    <div className="pr-4 mr-4 z-50">
+    <div className="pr-2 mr-2 z-50">
       <div
-        className={`navbar bg-gray-400 rounded-xl text-secondary-content flex-row-reverse justify-between m-4 
-			md:flex-row`}
+        className={`navbar bg-gray-400 rounded-xl text-secondary-content flex-row-reverse justify-between m-2 
+          md:flex-row`}
       >
         {/* name */}
-        <div
-          className="flex-row-reverse px-2 gap-0
-			md:flex-row"
-        >
-          {/* <UserCircleIcon className="w-8 h-8" /> */}
-          <IconUserBolt className="w-8 h-8" />
+        <div className="flex-row-reverse px-1 gap-0 md:flex-row">
+          {/* <UserCircleIcon className="w-6 h-6" /> */}
+          <IconUserBolt className="w-6 h-6" />
           <NavLink to={"/"}>
-            <div className="btn btn-ghost normal-case text-lg md:text-2xl">
+            <div className="btn btn-ghost normal-case text-base md:text-lg">
               STAR APP
             </div>
           </NavLink>
         </div>
         {/* maincontents */}
-        <div
-          className="hidden
-			   md:flex"
-        >
+        <div className="hidden md:flex">
           <ul className="menu menu-horizontal px-1">
-            <li className="text-lg md:text-2xl">
+            <li className="text-base md:text-lg">
               <NavLink to={"/"} id="contact_element">
-                <QuestionMarkCircleIcon className="w-8 h-8" />
+                <QuestionMarkCircleIcon className="w-6 h-6" />
                 Query
               </NavLink>
             </li>
-            <li className="text-lg md:text-2xl">
+            <li className="text-base md:text-lg">
               <NavLink to={"/docs"} id="contact_element">
-                <DocumentCheckIcon className="w-8 h-8" />
+                <DocumentCheckIcon className="w-6 h-6" />
                 Docs
               </NavLink>
             </li>
-            <li className="text-lg md:text-2xl">
+            <li className="text-base md:text-lg">
               <NavLink to={"/profile"} id="contact_element">
-                <UserCircleIcon className="w-8 h-8" />
+                <UserCircleIcon className="w-6 h-6" />
                 Profile
               </NavLink>
             </li>
-            <li className="text-lg md:text-2xl">
+            <li className="text-base md:text-lg">
               <NavLink to={"/signin"} id="contact_element">
-                <ArrowLeftOnRectangleIcon className="w-8 h-8" />
+                <ArrowLeftOnRectangleIcon className="w-6 h-6" />
                 Logout
               </NavLink>
             </li>
           </ul>
         </div>
-        {/* Theme */}
-
         {/* hamburger */}
         <div className="md:hidden">
           <ul className="menu menu-horizontal px-1">
             <li>
               <details>
-                <summary className="text-lg md:text-2xl">
-                  <Bars3Icon className="w-8 h-8" />
+                <summary className="text-base md:text-lg">
+                  <Bars3Icon className="w-6 h-6" />
                 </summary>
-                <ul className="p-2 bg-base-100 text-base-content z-50">
-                  <li className="text-lg md:text-2xl">
+                <ul className="p-1 bg-base-100 text-base-content z-50">
+                  <li className="text-base md:text-lg">
                     <NavLink to={"/projects"} id="contact_element">
-                      <BookmarkIcon className="w-8 h-8" />
+                      <BookmarkIcon className="w-6 h-6" />
                       Projects
                     </NavLink>
                   </li>
-                  <li className="text-lg md:text-2xl">
+                  <li className="text-base md:text-lg">
                     <NavLink to={"/about"} id="contact_element">
-                      <InformationCircleIcon className="w-8 h-8" />
+                      <InformationCircleIcon className="w-6 h-6" />
                       About
                     </NavLink>
                   </li>
-                  <li className="text-lg md:text-2xl">
+                  <li className="text-base md:text-lg">
                     <NavLink to={"/contact"} id="contact_element">
-                      <DevicePhoneMobileIcon className="w-8 h-8" />
+                      <DevicePhoneMobileIcon className="w-6 h-6" />
                       Contact
                     </NavLink>
                   </li>
