@@ -102,12 +102,19 @@ def remove_special_characters(text_list):
         text_list = [text.replace(char, "") for text in text_list]
     return text_list
 
-def beautify(text):
-    text = re.sub(r'\([^)]*\)|<[^>]*>', '', text)
-    text = re.sub(r'(\.\s[•A-Za-z0-9])\s', r'\1\n', text)
-    text = re.sub(r'\.{2,}', '', text)
-    return text
+def beautify(text_list):
+    main_answer = []
+    for text in text_list:
+        text = re.sub(r'\([^)]*\)|<[^>]*>', '', text)
+        text = re.sub(r'(\.\s[•A-Za-z0-9])\s', r'\1\n', text)
+        text = re.sub(r'\.{2,}', '', text)
+        main_answer.append(text)
+    
 
+    return main_answer
+
+
+@csrf_exempt
 def nasa(request):
 
     embedding2 = GooglePalmEmbeddings(
@@ -140,9 +147,11 @@ def nasa(request):
     #     )
 
     # Return answers, sections, and references as a JSON response
-    good_answers = [beautify(answers[0])]
+    good_answers = beautify(answers)
     return JsonResponse({'answers': good_answers, 'sections': sections, 'references': 'https://standards.nasa.gov/sites/default/files/standards/NASA/Baseline-w/CHANGE-1/1/nasa-std-5018_revalidated.pdf'})
 
+
+@csrf_exempt
 def bulletin(request):
 
     embedding2 = GooglePalmEmbeddings(
@@ -170,10 +179,12 @@ def bulletin(request):
         sections.extend(matches)
         
         
-    good_answers = [beautify(answers[0])]
+    good_answers = [beautify(answers)]
     # Return answers, sections, and references as a JSON response
     return JsonResponse({'answers': good_answers, 'sections': sections, 'references': 'https://www.nasa.gov/wp-content/uploads/2022/05/tb_summary_091922.pdf'})
 
+
+@csrf_exempt
 def standards(request):
     
     embedding2 = GooglePalmEmbeddings(
@@ -200,7 +211,7 @@ def standards(request):
         matches = re.findall(pattern, answer)
         sections.extend(matches)
 
-    good_answers = [beautify(answers[0])]
+    good_answers = [beautify(answers)]
     # Return answers, sections, and references as a JSON response
     response_data = {
         'answers': good_answers,
@@ -209,6 +220,8 @@ def standards(request):
     }
     return JsonResponse(response_data)
 
+
+@csrf_exempt
 def spacetech(request):
     
     embedding2 = GooglePalmEmbeddings(
@@ -235,7 +248,8 @@ def spacetech(request):
         matches = re.findall(pattern, answer)
         sections.extend(matches)
 
-    good_answers = [beautify(answers[0])]
+    good_answers = [beautify(answers)]
+    
     # Return answers, sections, and references as a JSON response
     response_data = {
         'answers': good_answers,
@@ -244,6 +258,8 @@ def spacetech(request):
     }
     return JsonResponse(response_data)
 
+
+@csrf_exempt
 def queries_request(request):
     if request.method == 'GET':
         try:
