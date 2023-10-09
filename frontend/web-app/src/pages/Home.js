@@ -372,7 +372,7 @@ const Home = () => {
             <div className="text-2xl mx-4">
               {responseAnswer ? (
                 responseAnswer.map((thing) => {
-                  return <div>{thing}</div>;
+                  return <div className="my-4">{thing}</div>;
                 })
               ) : buttonClicked ? (
                 <span className="loading loading-infinity loading-lg"></span>
@@ -456,7 +456,7 @@ const Home = () => {
             <div className="text-2xl mx-4">
               {responseAnswer ? (
                 responseAnswer.map((thing) => {
-                  return <div>{thing}</div>;
+                  return <div className="my-4">{thing}</div>;
                 })
               ) : buttonClicked ? (
                 <span className="loading loading-infinity loading-lg"></span>
@@ -540,7 +540,7 @@ const Home = () => {
             <div className="text-2xl mx-4">
               {responseAnswer ? (
                 responseAnswer.map((thing) => {
-                  return <div>{thing}</div>;
+                  return <div className="my-4">{thing}</div>;
                 })
               ) : buttonClicked ? (
                 <span className="loading loading-infinity loading-lg"></span>
@@ -624,7 +624,7 @@ const Home = () => {
             <div className="text-2xl mx-4">
               {responseAnswer ? (
                 responseAnswer.map((thing) => {
-                  return <div>{thing}</div>;
+                  return <div className="my-4">{thing}</div>;
                 })
               ) : buttonClicked ? (
                 <span className="loading loading-infinity loading-lg"></span>
@@ -708,7 +708,7 @@ const Home = () => {
             <div className="text-2xl mx-4 background-with-opacity5">
               {responseAnswer ? (
                 responseAnswer.map((thing) => {
-                  return <div>{thing}</div>;
+                  return <div className="my-4">{thing}</div>;
                 })
               ) : buttonClicked ? (
                 <span className="loading loading-infinity loading-lg"></span>
@@ -792,7 +792,7 @@ const Home = () => {
             <div className="text-2xl mx-4 background-with-opacity5">
               {responseAnswer ? (
                 responseAnswer.map((thing) => {
-                  return <div>{thing}</div>;
+                  return <div className="my-4">{thing}</div>;
                 })
               ) : buttonClicked ? (
                 <span className="loading loading-infinity loading-lg"></span>
